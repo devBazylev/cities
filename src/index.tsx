@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
+import Main from './components/main/main';
+
+const Setting = {
+  CARDS_COUNT: 5,
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -8,6 +12,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Main
+      cardsCount = {Setting.CARDS_COUNT}
+    />
   </React.StrictMode>,
 );
