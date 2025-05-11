@@ -1,5 +1,5 @@
-import Header from '../header/header';
-import Card from '../card/card';
+import Header from '../../components/header/header';
+import Card from '../../components/card/card';
 import {MainProps} from '../../types/types';
 import getNextKey from '../../utils/utils';
 

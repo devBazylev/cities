@@ -1,4 +1,4 @@
-import Main from '../main/main';
+import Main from '../../pages/main/main';
 import {AppProps} from '../../types/types';
 
 function App({cardsCount}: AppProps): JSX.Element {
