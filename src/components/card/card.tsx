@@ -1,7 +1,3 @@
-// type CardProps = {
-//   cardProps: number;
-// }
-
 function Card(): JSX.Element {
   return (
     <article className="cities__place-card place-card">

@@ -1,5 +1,4 @@
 import Main from '../main/main';
-// import MainEmpty from '../main-empty/main-empty';
 
 type Props = {
   props: number;
