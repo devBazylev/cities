@@ -1,5 +1,6 @@
 import Header from '../header/header';
 import Card from '../card/card';
+import getNextKey from '../../utils/utils';
 
 type MainScreenProps = {
   cardsCount: number;
@@ -68,8 +69,8 @@ function Main({cardsCount}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: cardsCount }, (_, index) => ({ id: index })).map((card) => (
-                  <Card key={card.id} />
+                {Array.from({ length: cardsCount }, () => (
+                  <Card key={getNextKey()} />
                 ))}
               </div>
             </section>
