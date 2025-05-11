@@ -1,12 +1,9 @@
 import Header from '../header/header';
 import Card from '../card/card';
+import {MainProps} from '../../types/types';
 import getNextKey from '../../utils/utils';
 
-type MainScreenProps = {
-  cardsCount: number;
-}
-
-function Main({cardsCount}: MainScreenProps): JSX.Element {
+function Main({cardsCount}: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />

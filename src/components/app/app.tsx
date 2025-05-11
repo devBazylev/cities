@@ -1,12 +1,9 @@
 import Main from '../main/main';
+import {AppProps} from '../../types/types';
 
-type Props = {
-  props: number;
-}
-
-function App({props}: Props): JSX.Element {
+function App({cardsCount}: AppProps): JSX.Element {
   return (
-    <Main cardsCount= {props} />
+    <Main cardsCount= {cardsCount} />
   );
 }
 
