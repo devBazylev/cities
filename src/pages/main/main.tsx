@@ -4,7 +4,7 @@ import Card from '../../components/card/card';
 import { MainProps } from '../../types/types';
 import getNextKey from '../../utils/utils';
 
-function Main({cardsCount}: MainProps): JSX.Element {
+function Main({offersCount}: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header>
@@ -52,7 +52,7 @@ function Main({cardsCount}: MainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cardsCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -69,7 +69,7 @@ function Main({cardsCount}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: cardsCount }, () => (
+                {Array.from({ length: offersCount }, () => (
                   <Card key={getNextKey()} />
                 ))}
               </div>

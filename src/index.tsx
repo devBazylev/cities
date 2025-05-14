@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      cardsCount = {Settings.OffersCount}
+      offersCount = {Settings.OffersCount}
     />
   </React.StrictMode>,
 );

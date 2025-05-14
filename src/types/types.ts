@@ -1,9 +1,9 @@
 type AppProps = {
-  cardsCount: number;
+  offersCount: number;
 }
 
 type MainProps = {
-  cardsCount: number;
+  offersCount: number;
 }
 
 export type {
