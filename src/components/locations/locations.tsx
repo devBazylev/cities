@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Locations({id}: {id: number}, {city}: {city: string}): JSX.Element {
   return (
