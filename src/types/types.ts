@@ -2,7 +2,7 @@ type AppProps = {
   offersCount: number;
 }
 
-type MainProps = {
+type CitiesProps = {
   offersCount: number;
 }
 

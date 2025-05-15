@@ -1,3 +1,16 @@
+import {useEffect} from 'react';
+import {useLocation} from 'react-router-dom';
+
+function ScrollToTop() {
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 const generateKey = () => {
   let key = 0;
   return () => {
@@ -8,4 +21,7 @@ const generateKey = () => {
 
 const getNextKey = generateKey();
 
-export default getNextKey;
+export {
+  getNextKey,
+  ScrollToTop
+};

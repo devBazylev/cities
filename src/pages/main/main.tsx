@@ -1,8 +1,10 @@
 import Card from '../../components/card/card';
-import { MainProps } from '../../types/types';
-import getNextKey from '../../utils/utils';
+import {getNextKey} from '../../utils/utils';
+import cities from '../../mock/cities';
+import {Outlet} from 'react-router-dom';
+import Locations from '../../components/locations/locations';
 
-function Main({offersCount}: MainProps): JSX.Element {
+function Main({offersCount}: {offersCount: number}): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <main className="page__main page__main--index">
@@ -10,36 +12,10 @@ function Main({offersCount}: MainProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
+              <Outlet />
+              {Array.from({length: cities.length}, (item, index) => (
+                <Locations key={item[index].id} />
+              ))}
             </ul>
           </section>
         </div>
