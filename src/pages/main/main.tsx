@@ -1,12 +1,14 @@
 import Card from '../../components/card/card';
 import {getNextKey} from '../../utils/utils';
-// import cities from '../../mock/cities';
-// import {Outlet} from 'react-router-dom';
-// import Locations from '../../components/locations/locations';
+import Header from '../../components/header/header';
+import Nav from '../../components/nav/nav';
 
 function Main({offersCount}: {offersCount: number}): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Header>
+        <Nav />
+      </Header>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

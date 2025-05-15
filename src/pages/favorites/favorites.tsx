@@ -1,8 +1,13 @@
+import Header from '../../components/header/header';
+import Nav from '../../components/nav/nav';
 import Footer from '../../components/footer/footer';
 
 function Favorites(): JSX.Element {
   return (
     <div className="page">
+      <Header>
+        <Nav />
+      </Header>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
