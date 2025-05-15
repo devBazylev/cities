@@ -1,19 +1,19 @@
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Nav(): JSX.Element {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <NavLink to="/" className="header__nav-link header__nav-link--profile">
+          <Link to="/login" className="header__nav-link header__nav-link--profile">
             <div className="header__avatar-wrapper user__avatar-wrapper"></div>
             <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-          </NavLink>
+          </Link>
         </li>
         <li className="header__nav-item">
-          <a className="header__nav-link" href="#">
+          <Link to="/" className="header__nav-link">
             <span className="header__signout">Sign out</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

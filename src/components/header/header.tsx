@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import {ReactNode} from 'react';
+import {NavLink} from 'react-router-dom';
 
 function Header({children}: { children?: ReactNode }): JSX.Element {
   return (
@@ -6,9 +7,9 @@ function Header({children}: { children?: ReactNode }): JSX.Element {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <NavLink to="/" className={({ isActive }) => isActive ? 'header__logo-link header__logo-link--active' : 'header__logo-link'}>
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={81} height={41} />
-            </a>
+            </NavLink>
           </div>
           {children}
         </div>
