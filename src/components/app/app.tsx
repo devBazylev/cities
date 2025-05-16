@@ -1,6 +1,6 @@
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
-import Property from '../../pages/property/property';
+import Offer from '../../pages/offer/offer';
 import Favorites from '../../pages/favorites/favorites';
 import Error from '../../pages/error/error';
 import { ScrollToTop } from '../../utils';
@@ -16,7 +16,7 @@ function App({offersCount}: {offersCount: number}): JSX.Element {
         <Route path="/">
           <Route index element={<Main offersCount= {offersCount}/>}/>
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={`${AppRoute.Property}/:id`} element={<Property />} />
+          <Route path={`${AppRoute.Offer}/:id`} element={<Offer />} />
           <Route path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>

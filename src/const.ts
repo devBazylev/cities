@@ -8,7 +8,7 @@ export enum AppRoute {
   Root = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Property = '/offer',
+  Offer = '/offer',
 }
 
 export const Settings = {
