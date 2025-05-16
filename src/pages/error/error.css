@@ -1,0 +1,17 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.error__title {
+  margin: 0;
+  font-size: 32px;
+  color: red;
+}
+
+.error__link {
+  font-size: 20px;
+  color: #3e92ec;
+}

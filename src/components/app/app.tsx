@@ -2,7 +2,7 @@ import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Property from '../../pages/property/property';
 import Favorites from '../../pages/favorites/favorites';
-import Page404 from '../../pages/page404/page404';
+import Error from '../../pages/error/error';
 import { ScrollToTop } from '../../utils/utils';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const/const';
@@ -24,7 +24,7 @@ function App({offersCount}: {offersCount: number}): JSX.Element {
               </PrivateRoute>
             }
           />
-          <Route path="*" element={<Page404 />}/>
+          <Route path="*" element={<Error />}/>
         </Route>
       </Routes>
     </BrowserRouter>
