@@ -1,12 +1,16 @@
 import Card from '../../components/card/card';
-import {getNextKey} from '../../utils/utils';
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { getNextKey } from '../../utils/utils';
 
 function Main({offersCount}: {offersCount: number}): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>Главная страница</title>
+      </Helmet>
       <Header>
         <Nav />
       </Header>

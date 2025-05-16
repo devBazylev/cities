@@ -1,9 +1,13 @@
 import Header from '../../components/header/header';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 function Login(): JSX.Element {
   return (
     <div className="page page--gray page--login">
+      <Helmet>
+        <title>Страница авторизации</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--login">
         <div className="page__login-container container">

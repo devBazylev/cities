@@ -1,11 +1,15 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import Footer from '../../components/footer/footer';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 function Favorites(): JSX.Element {
   return (
     <div className="page">
+      <Helmet>
+        <title>Страница избранное</title>
+      </Helmet>
       <Header>
         <Nav />
       </Header>
