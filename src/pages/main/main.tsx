@@ -3,7 +3,7 @@ import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { getNextKey } from '../../utils/utils';
+import { getNextKey } from '../../utils';
 
 function Main({offersCount}: {offersCount: number}): JSX.Element {
   return (
