@@ -1,7 +1,10 @@
-export type {
-
+export type OfferMock = {
+  id: number;
+  isPremium: boolean;
+  img: string;
+  price: number;
+  isMarked?: boolean;
+  rating: number;
+  description: string;
+  place: string;
 };
-
-// function identify<T>(value: T): T {
-//   return value;
-// }

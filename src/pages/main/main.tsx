@@ -4,7 +4,8 @@ import Nav from '../../components/nav/nav';
 import FormSorting from '../../components/form-sorting/form-sorting';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { getNextKey } from '../../utils';
+// import { getNextKey } from '../../utils';
+import { Cards } from '../../mock/offer';
 
 function Main({offersCount}: {offersCount: number}): JSX.Element {
   return (
@@ -60,9 +61,9 @@ function Main({offersCount}: {offersCount: number}): JSX.Element {
               <b className="places__found">{offersCount} places to stay in Amsterdam</b>
               <FormSorting />
               <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: offersCount }, () => (
-                  <Card key={getNextKey()} />
-                ))}
+                {Cards.map((card) =>
+                  <Card key={card.id} {...card}/>
+                )}
               </div>
             </section>
             <div className="cities__right-section">
