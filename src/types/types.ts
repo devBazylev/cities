@@ -1,9 +1,9 @@
 export type OfferMock = {
-  id: number;
+  id?: number;
   isPremium: boolean;
   img: string;
   price: number;
-  isMarked?: boolean;
+  isMarked: boolean;
   rating: number;
   description: string;
   place: string;

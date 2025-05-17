@@ -1,3 +1,5 @@
+// import { OfferMock } from '../types/types';
+
 export const Cards = [
   {
     id: 1,
