@@ -1,26 +1,7 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
-import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-`;
-
-const H1 = styled.h1`
-  margin: 0;
-  font-size: 32px;
-  color: red;
-`;
-
-const A = styled(Link)`
-  font-size: 20px;
-  color: #3e92ec;
-`;
+import { Div, H1, A} from './style';
 
 function Error(): JSX.Element {
   return (
@@ -32,8 +13,8 @@ function Error(): JSX.Element {
         <Nav />
       </Header>
       <Div>
-        <H1>404 not found</H1>
-        <A to="/">Go to main page</A>
+        <H1 size={42}>404 not found</H1>
+        <A to="/" size={32}>Go to main page</A>
       </Div>
     </div>
   );
