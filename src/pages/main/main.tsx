@@ -4,7 +4,6 @@ import Nav from '../../components/nav/nav';
 import FormSorting from '../../components/form-sorting/form-sorting';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-// import { getNextKey } from '../../utils';
 import { Cards } from '../../mock/offer';
 
 function Main({offersCount}: {offersCount: number}): JSX.Element {

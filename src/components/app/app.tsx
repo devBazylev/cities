@@ -30,6 +30,5 @@ function App({offersCount}: {offersCount: number}): JSX.Element {
     </BrowserRouter>
   );
 }
-// eslint-disable-next-line no-console
 
 export default App;
