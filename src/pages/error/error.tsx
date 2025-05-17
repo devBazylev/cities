@@ -17,7 +17,7 @@ const H1 = styled.h1`
   color: red;
 `;
 
-const Linkk = styled(Link)`
+const A = styled(Link)`
   font-size: 20px;
   color: #3e92ec;
 `;
@@ -33,7 +33,7 @@ function Error(): JSX.Element {
       </Header>
       <Div>
         <H1>404 not found</H1>
-        <Linkk to="/">Go to main page</Linkk>
+        <A to="/">Go to main page</A>
       </Div>
     </div>
   );
