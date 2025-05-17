@@ -1,3 +1,5 @@
+import { Cards } from './mock/offer';
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -12,5 +14,5 @@ export enum AppRoute {
 }
 
 export const Settings = {
-  OffersCount: 5,
+  OffersCount: Cards.length,
 };

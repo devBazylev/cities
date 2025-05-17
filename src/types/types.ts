@@ -8,3 +8,8 @@ export type OfferMock = {
   description: string;
   place: string;
 };
+
+export type IndexProps = {
+  offersCount: number;
+  cards: OfferMock;
+};
