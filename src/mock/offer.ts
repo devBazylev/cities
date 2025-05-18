@@ -1,8 +1,9 @@
 import { OfferProps } from '../types';
+import { getNextId } from '../utils';
 
 export const Cards: OfferProps[] = [
   {
-    id: 1,
+    id: getNextId(),
     isPremium: true,
     img: 'img/apartment-01.jpg',
     price: 120,
@@ -15,7 +16,7 @@ export const Cards: OfferProps[] = [
     }
   },
   {
-    id: 2,
+    id: getNextId(),
     isPremium: false,
     img: 'img/room.jpg',
     price: 80,
@@ -28,7 +29,7 @@ export const Cards: OfferProps[] = [
     }
   },
   {
-    id: 3,
+    id: getNextId(),
     isPremium: false,
     img: 'img/apartment-02.jpg',
     price: 132,
@@ -41,7 +42,7 @@ export const Cards: OfferProps[] = [
     }
   },
   {
-    id: 4,
+    id: getNextId(),
     isPremium: true,
     img: 'img/apartment-03.jpg',
     price: 180,

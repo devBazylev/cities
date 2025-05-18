@@ -11,7 +11,7 @@ function ScrollToTop() {
   return null;
 }
 
-const generateKey = () => {
+const generateId = () => {
   let key = 0;
   return () => {
     key += 1;
@@ -19,9 +19,9 @@ const generateKey = () => {
   };
 };
 
-const getNextKey = generateKey();
+const getNextId = generateId();
 
 export {
-  getNextKey,
+  getNextId,
   ScrollToTop
 };
