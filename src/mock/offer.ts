@@ -39,8 +39,8 @@ export const Cards: OfferProps[] = [
     description: 'Canal View Prinsengracht',
     type: 'house',
     city: {
-      name: 'Amsterdam'
-      // name: 'Brussels'
+      name: 'Brussels'
+      // name: 'Amsterdam'
     }
   },
   {
