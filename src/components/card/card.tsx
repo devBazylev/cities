@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { OfferMock } from '../../types/types';
+import { OfferProps } from '../../types';
 
-function Card({img, isPremium, price, isMarked, rating, description, place}: OfferMock): JSX.Element {
+function Card({img, isPremium, price, isMarked, rating, description, type}: OfferProps): JSX.Element {
   return (
     <article className="cities__place-card place-card">
-      {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null}
+      {isPremium && (<div className="place-card__mark"><span>Premium</span></div>)}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to='#'>
           <img className="place-card__image" src={img} width={260} height={200} alt="Place" />
@@ -34,7 +34,7 @@ function Card({img, isPremium, price, isMarked, rating, description, place}: Off
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}} />
+            <span style={{width: `${rating * 20}%`}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -43,7 +43,7 @@ function Card({img, isPremium, price, isMarked, rating, description, place}: Off
             {description}
           </Link>
         </h2>
-        <p className="place-card__type">{place}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

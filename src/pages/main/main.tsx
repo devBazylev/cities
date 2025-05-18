@@ -1,12 +1,13 @@
-import Card from '../../components/card/card';
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
+import CardList from '../../components/card-list/card-list';
 import FormSorting from '../../components/form-sorting/form-sorting';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Cards } from '../../mock/offer';
+import { Settings } from '../../const';
 
-function Main({offersCount}: {offersCount: number}): JSX.Element {
+function Main(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -57,13 +58,9 @@ function Main({offersCount}: {offersCount: number}): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">{Settings.OffersCount} places to stay in Amsterdam</b>
               <FormSorting />
-              <div className="cities__places-list places__list tabs__content">
-                {Cards.map((card) =>
-                  <Card key={card.id} {...card}/>
-                )}
-              </div>
+              <CardList cards={Cards}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

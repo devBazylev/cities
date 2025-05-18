@@ -1,15 +1,18 @@
-// import { OfferMock } from '../types/types';
+import { OfferProps } from '../types';
 
-export const Cards = [
+export const Cards: OfferProps[] = [
   {
     id: 1,
     isPremium: true,
     img: 'img/apartment-01.jpg',
     price: 120,
     isMarked: false,
-    rating: 80,
+    rating: 3.8,
     description: 'Beautiful &amp; luxurious apartment at great location',
-    place: 'Apartment',
+    type: 'apartment',
+    city: {
+      name: 'Amsterdam'
+    }
   },
   {
     id: 2,
@@ -17,9 +20,12 @@ export const Cards = [
     img: 'img/room.jpg',
     price: 80,
     isMarked: true,
-    rating: 80,
+    rating: 4.4,
     description: 'Wood and stone place',
-    place: 'Private room',
+    type: 'room',
+    city: {
+      name: 'Paris'
+    }
   },
   {
     id: 3,
@@ -27,9 +33,12 @@ export const Cards = [
     img: 'img/apartment-02.jpg',
     price: 132,
     isMarked: false,
-    rating: 80,
+    rating: 3.4,
     description: 'Canal View Prinsengracht',
-    place: 'Apartment',
+    type: 'house',
+    city: {
+      name: 'Paris'
+    }
   },
   {
     id: 4,
@@ -37,8 +46,11 @@ export const Cards = [
     img: 'img/apartment-03.jpg',
     price: 180,
     isMarked: false,
-    rating: 100,
+    rating: 5,
     description: 'Nice, cozy, warm big bed apartment',
-    place: 'Apartment',
+    type: 'hotel',
+    city: {
+      name: 'Amsterdam'
+    }
   },
 ];
