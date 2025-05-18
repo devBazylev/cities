@@ -10,6 +10,8 @@ export type OfferProps = {
   city: {
     name: string;
   };
+  onMouseMove?: () => void;
+  onMouseLeave?: () => void;
 };
 
 export type CardListProps = {

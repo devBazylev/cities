@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { OfferProps } from '../../types';
 import { AppRoute } from '../../const';
 
-function Card({id, img, isPremium, price, isMarked, rating, description, type}: OfferProps): JSX.Element {
+
+function Card({id, img, isPremium, price, isMarked, rating, description, type, onMouseMove, onMouseLeave}: OfferProps): JSX.Element {
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
       {isPremium && (<div className="place-card__mark"><span>Premium</span></div>)}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Offer}/${id}`}>
