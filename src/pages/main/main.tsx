@@ -4,10 +4,10 @@ import CardList from '../../components/card-list/card-list';
 import FormSorting from '../../components/form-sorting/form-sorting';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Cards } from '../../mock/offer';
 import { Settings } from '../../const';
+import type { CardListProps } from '../../types';
 
-function Main(): JSX.Element {
+function Main({ cards }: CardListProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -60,7 +60,7 @@ function Main(): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{Settings.OffersCount} places to stay in Amsterdam</b>
               <FormSorting />
-              <CardList cards={Cards}/>
+              <CardList cards={cards}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

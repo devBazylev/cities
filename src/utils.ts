@@ -11,7 +11,7 @@ function ScrollToTop() {
   return null;
 }
 
-const generateId = () => {
+const generateCardId = () => {
   let key = 0;
   return () => {
     key += 1;
@@ -19,9 +19,19 @@ const generateId = () => {
   };
 };
 
-const getNextId = generateId();
+const generateCityId = () => {
+  let key = 0;
+  return () => {
+    key += 1;
+    return key;
+  };
+};
+
+const getCardId = generateCardId();
+const getCityId = generateCityId();
 
 export {
-  getNextId,
-  ScrollToTop
+  ScrollToTop,
+  getCardId,
+  getCityId,
 };

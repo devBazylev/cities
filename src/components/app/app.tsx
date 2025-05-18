@@ -7,21 +7,22 @@ import PrivateRoute from '../private-route/private-route';
 import { ScrollToTop } from '../../utils';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import type { CardListProps } from '../../types';
 // eslint-disable-next-line no-console
 
-function App(): JSX.Element {
+function App({ cards }: CardListProps): JSX.Element {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/">
-          <Route index element={<Main />}/>
+          <Route index element={<Main cards={cards} />}/>
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={`${AppRoute.Offer}/:id`} element={<Offer />} />
           <Route path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <Favorites />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <Favorites cards={cards} />
               </PrivateRoute>
             }
           />
