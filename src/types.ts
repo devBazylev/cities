@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { AuthorizationStatus } from './const';
 
 export type OfferProps = {
   id: number;
@@ -14,6 +15,14 @@ export type OfferProps = {
   };
   onMouseMove?: () => void;
   onMouseLeave?: () => void;
+};
+
+export type AuthorizationProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+export type PrivateRouteProps = AuthorizationProps & {
+  children: JSX.Element;
 };
 
 export type CardListProps = {

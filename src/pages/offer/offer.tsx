@@ -3,10 +3,11 @@ import Nav from '../../components/nav/nav';
 import FormOffer from '../../components/form-offer/form-offer';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { AuthorizationProps } from '../../types';
+import { AuthorizationStatus } from '../../const';
 
-function Property(): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
+function Property({authorizationStatus}: AuthorizationProps): JSX.Element {
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
   return (
     <div className="page">
       <Helmet>
@@ -118,7 +119,7 @@ function Property(): JSX.Element {
                     </div>
                   </li>
                 </ul>
-                <FormOffer />
+                {isAuth && (<FormOffer />)}
               </section>
             </div>
           </div>
