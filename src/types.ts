@@ -1,3 +1,5 @@
+import type { ChangeEvent } from 'react';
+
 export type OfferProps = {
   id: number;
   isPremium: boolean;
@@ -16,4 +18,12 @@ export type OfferProps = {
 
 export type CardListProps = {
   cards: OfferProps[];
+};
+
+export type OfferForm = {
+  rating?: number | null;
+  text?: string;
+  onChange?: (evt: ChangeEvent<HTMLTextAreaElement>) => void;
+  onRatingChange?: (rating: number) => void;
+  onSubmit?: (evt: React.FormEvent) => void;
 };

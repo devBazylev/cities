@@ -3,8 +3,26 @@ import Nav from '../../components/nav/nav';
 import FormOffer from '../../components/form-offer/form-offer';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
 function Property(): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [text, setText] = useState<string>('');
+  const [rating, setRating] = useState<number | null>(null);
+
+  const handleTextareaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setText(evt.target.value);
+  };
+
+  const handleRatingChange = () => {
+    setRating(rating);
+  };
+
+  const handleFormSubmit = (evt: FormEvent) => {
+    evt.preventDefault();
+  };
+
   return (
     <div className="page">
       <Helmet>
@@ -116,7 +134,13 @@ function Property(): JSX.Element {
                     </div>
                   </li>
                 </ul>
-                <FormOffer />
+                <FormOffer
+                  text={text}
+                  onChange={handleTextareaChange}
+                  rating={rating}
+                  onRatingChange={handleRatingChange}
+                  onSubmit={handleFormSubmit}
+                />
               </section>
             </div>
           </div>
