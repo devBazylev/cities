@@ -8,8 +8,8 @@ import { ScrollToTop } from '../../utils';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import type { CardListProps } from '../../types';
-// eslint-disable-next-line no-console
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-console
 
 function App({ cards }: CardListProps): JSX.Element {
   return (
