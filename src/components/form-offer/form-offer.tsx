@@ -18,7 +18,7 @@ function FormOffer(): JSX.Element {
   ];
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" method="post" action="https://echo.htmlacademy.ru">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {stars.map(({value, label}) =>
