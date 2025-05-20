@@ -20,12 +20,11 @@ function App({ cards }: CardListProps): JSX.Element {
           <Route index element={<Main cards={cards} />}/>
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={`${AppRoute.Offer}/:id`} element={<Offer authorizationStatus={AuthorizationStatus.Auth} />} />
-          <Route path={AppRoute.Favorites}
-            element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <Favorites cards={cards} />
-              </PrivateRoute>
-            }
+          <Route path={AppRoute.Favorites} element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <Favorites cards={cards} />
+            </PrivateRoute>
+          }
           />
           <Route path="*" element={<Error />}/>
         </Route>
