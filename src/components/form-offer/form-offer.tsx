@@ -1,12 +1,35 @@
-import { ReactEventHandler, useState, Fragment } from 'react';
+import { ReactEventHandler, useState, Fragment, useRef, FormEvent } from 'react';
 
 type ChangeHandlerProps = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 function FormOffer(): JSX.Element {
+  const inputRef = useRef<HTMLFormElement>(null);
   const [review, setReview] = useState({ rating: 0, review: '' });
+
   const handleChange: ChangeHandlerProps = (evt) => {
     const { name, value } = evt.currentTarget;
-    setReview({ ...review, [name]: value });
+    if (name === 'rating') {
+      setReview((prev) => ({ ...prev, rating: Number(value) }));
+    } else if (name === 'review') {
+      setReview((prev) => ({ ...prev, review: value }));
+    }
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
+    evt.preventDefault();
+    (async () => {
+      if (inputRef.current) {
+        const response = await fetch('https://echo.htmlacademy.ru', {
+          method: 'POST',
+          body: new FormData(inputRef.current).get('review')
+        });
+        if (response.ok) {
+          // eslint-disable-next-line no-console
+          console.log('The data has been successfully delivered');
+        }
+        setReview({ rating: 0, review: '' });
+      }
+    })();
   };
 
   const stars = [
@@ -18,7 +41,7 @@ function FormOffer(): JSX.Element {
   ];
 
   return (
-    <form className="reviews__form form" method="post" action="https://echo.htmlacademy.ru">
+    <form className="reviews__form form" method="post" ref={inputRef} onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {stars.map(({value, label}) =>
@@ -30,6 +53,7 @@ function FormOffer(): JSX.Element {
                 id={`${value}-stars`}
                 type="radio"
                 onChange={handleChange}
+                checked={review.rating === value}
               />
               <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={label}>
                 <svg className="form__star-image" width="37" height="33">
@@ -46,6 +70,7 @@ function FormOffer(): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleChange}
+        value={review.review}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
