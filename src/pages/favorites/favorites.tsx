@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import Footer from '../../components/footer/footer';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { CardListProps } from '../../types';
 import { getCityId } from '../../utils';
@@ -12,9 +12,11 @@ function Favorites({ cards }: CardListProps): JSX.Element {
   const cities = Array.from(new Set(cardsMarked.map((elem) => elem.city.name)));
   return (
     <div className="page">
-      <Helmet>
-        <title>Страница избранное</title>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Страница избранное</title>
+        </Helmet>
+      </HelmetProvider>
       <Header>
         <Nav />
       </Header>

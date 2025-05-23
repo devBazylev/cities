@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import FormOffer from '../../components/form-offer/form-offer';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { AuthorizationProps } from '../../types';
 import { AuthorizationStatus } from '../../const';
@@ -10,9 +10,11 @@ function Property({authorizationStatus}: AuthorizationProps): JSX.Element {
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
   return (
     <div className="page">
-      <Helmet>
-        <title>Страница предложения</title>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Страница предложения</title>
+        </Helmet>
+      </HelmetProvider>
       <Header>
         <Nav />
       </Header>

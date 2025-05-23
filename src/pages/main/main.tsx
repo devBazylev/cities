@@ -2,7 +2,7 @@ import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import CardList from '../../components/card-list/card-list';
 import FormSorting from '../../components/form-sorting/form-sorting';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Settings } from '../../const';
 import type { CardListProps } from '../../types';
@@ -10,9 +10,11 @@ import type { CardListProps } from '../../types';
 function Main({ cards }: CardListProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <Helmet>
-        <title>Главная страница</title>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Главная страница</title>
+        </Helmet>
+      </HelmetProvider>
       <Header>
         <Nav />
       </Header>

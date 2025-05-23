@@ -1,14 +1,16 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Div, H1, A} from './style';
 
 function Error(): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <Helmet>
-        <title>Страница отсутствует</title>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Страница отсутствует</title>
+        </Helmet>
+      </HelmetProvider>
       <Header>
         <Nav />
       </Header>
