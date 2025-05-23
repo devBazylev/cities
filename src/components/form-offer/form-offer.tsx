@@ -24,8 +24,8 @@ function FormOffer(): JSX.Element {
           body: new FormData(inputRef.current).get('review')
         });
         if (response.ok) {
-          // eslint-disable-next-line no-console
-          console.log('The data has been successfully delivered');
+          // eslint-disable-next-line no-alert
+          alert('ACHTUNG!');
         }
         setReview({ rating: 0, review: '' });
       }
