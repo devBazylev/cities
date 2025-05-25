@@ -5,7 +5,8 @@ import FormSorting from '../../components/form-sorting/form-sorting';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Settings } from '../../const';
-import type { CardListProps } from '../../types';
+import { CardListProps } from '../../types';
+import Map from '../../components/map/map';
 
 function Main({ cards }: CardListProps): JSX.Element {
   return (
@@ -65,7 +66,7 @@ function Main({ cards }: CardListProps): JSX.Element {
               <CardList cards={cards}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map" />
+              <Map cards={cards} />
             </div>
           </div>
         </div>

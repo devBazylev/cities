@@ -1,4 +1,6 @@
-import { Cards } from './mock/offer';
+import { cards } from './mock/offer';
+
+export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -14,5 +16,5 @@ export enum AppRoute {
 }
 
 export const Settings = {
-  OffersCount: Cards.length,
+  OffersCount: cards.length,
 };

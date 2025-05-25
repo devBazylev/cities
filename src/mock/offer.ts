@@ -1,7 +1,7 @@
 import { OfferProps } from '../types';
 import { getCardId } from '../utils';
 
-export const Cards: OfferProps[] = [
+export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
@@ -12,8 +12,18 @@ export const Cards: OfferProps[] = [
     description: 'Beautiful &amp; luxurious apartment at great location',
     type: 'apartment',
     city: {
-      name: 'Amsterdam'
-    }
+      name: 'Amsterdam',
+      locations: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
+      }
+    },
+    locations: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 1
+    },
   },
   {
     id: getCardId(),
@@ -25,9 +35,18 @@ export const Cards: OfferProps[] = [
     description: 'Wood and stone place',
     type: 'room',
     city: {
-      name: 'Paris'
-      // name: 'Dusseldorf'
-    }
+      name: 'Amsterdam',
+      locations: {
+        latitude: 52.3919553943508,
+        longitude: 4.95359666406198,
+        zoom: 10
+      }
+    },
+    locations: {
+      latitude: 52.3919553943508,
+      longitude: 4.95359666406198,
+      zoom: 1
+    },
   },
   {
     id: getCardId(),
@@ -39,9 +58,18 @@ export const Cards: OfferProps[] = [
     description: 'Canal View Prinsengracht',
     type: 'house',
     city: {
-      name: 'Brussels'
-      // name: 'Amsterdam'
-    }
+      name: 'Amsterdam',
+      locations: {
+        latitude: 52.3409553943508,
+        longitude: 4.90309666406198,
+        zoom: 10
+      }
+    },
+    locations: {
+      latitude: 52.3409553943508,
+      longitude: 4.90309666406198,
+      zoom: 1
+    },
   },
   {
     id: getCardId(),
@@ -53,8 +81,17 @@ export const Cards: OfferProps[] = [
     description: 'Nice, cozy, warm big bed apartment',
     type: 'hotel',
     city: {
-      name: 'Cologne'
-      // name: 'Hamburg'
-    }
+      name: 'Amsterdam',
+      locations: {
+        latitude: 52.3839553943508,
+        longitude: 4.90309666406198,
+        zoom: 10
+      }
+    },
+    locations: {
+      latitude: 52.3839553943508,
+      longitude: 4.90309666406198,
+      zoom: 1
+    },
   },
 ];

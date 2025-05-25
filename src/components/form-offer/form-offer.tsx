@@ -25,7 +25,7 @@ function FormOffer(): JSX.Element {
         });
         if (response.ok) {
           // eslint-disable-next-line no-alert
-          alert('ACHTUNG!');
+          alert('ACHTUNG! The review has been published');
         }
         setReview({ rating: 0, review: '' });
       }
@@ -74,12 +74,12 @@ function FormOffer(): JSX.Element {
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">5 characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.review.length < 50 || review.rating === 0}
+          disabled={review.review.length < 5 || review.rating === 0}
         >Submit
         </button>
       </div>
