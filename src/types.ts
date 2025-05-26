@@ -34,6 +34,15 @@ export type OfferProps = {
   onMouseLeave?: () => void;
 };
 
+export type ReviewProps = {
+  id: number;
+  img: string;
+  user: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
 export type AuthorizationProps = {
   authorizationStatus: AuthorizationStatus;
 }

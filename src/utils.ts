@@ -27,11 +27,21 @@ const generateCityId = () => {
   };
 };
 
+const generateReviewId = () => {
+  let key = 0;
+  return () => {
+    key += 1;
+    return key;
+  };
+};
+
 const getCardId = generateCardId();
 const getCityId = generateCityId();
+const getReviewId = generateReviewId();
 
 export {
   ScrollToTop,
   getCardId,
   getCityId,
+  getReviewId,
 };
