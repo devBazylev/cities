@@ -109,10 +109,9 @@ function Property({authorizationStatus}: AuthorizationProps): JSX.Element {
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
                 <ReviewsList>
-                  ({reviews.length > 0} &&
-                  {reviews.map((review) => (
+                  {reviews?.map((review) => (
                     <ReviewsItem key={review.id} {...review} />
-                  ))})
+                  ))}
                 </ReviewsList>
                 {isAuth && (<FormOffer />)}
               </section>
