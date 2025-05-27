@@ -12,7 +12,12 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map ({ cards }: CardListProps): JSX.Element {
+type MapProps = {
+  cards: CardListProps['cards'];
+  place?: 'cities' | 'property';
+}
+
+function Map ({ cards, place = 'cities' }: MapProps): JSX.Element {
   const locations = cards.map((card) => ({
     latitude: card.locations.latitude,
     longitude: card.locations.longitude
@@ -37,7 +42,7 @@ function Map ({ cards }: CardListProps): JSX.Element {
     }
   }, [map, locations]);
 
-  return <section className="cities__map map" ref={mapRef} />;
+  return <section className={`${place}__map map`} ref={mapRef} />;
 }
 
 export default Map;

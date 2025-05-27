@@ -2,11 +2,15 @@ import { Link } from 'react-router-dom';
 import { OfferProps } from '../../types';
 import { AppRoute } from '../../const';
 
-function Card({id, img, isPremium, price, isMarked, rating, description, type, onMouseMove, onMouseLeave}: OfferProps): JSX.Element {
+type CardProps = OfferProps & {
+  wrapName?: 'cities' | 'near-places' | 'favorites';
+};
+
+function Card({id, img, isPremium, price, isMarked, rating, description, type, onMouseMove, onMouseLeave, wrapName = 'cities'}: CardProps): JSX.Element {
   return (
-    <article className="cities__place-card place-card" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
+    <article className={wrapName === 'cities' ? 'cities__place-card place-card' : 'near-places__card place-card' } onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
       {isPremium && (<div className="place-card__mark"><span>Premium</span></div>)}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${wrapName}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${id}`}>
           <img className="place-card__image" src={img} width={260} height={200} alt="Place" />
         </Link>

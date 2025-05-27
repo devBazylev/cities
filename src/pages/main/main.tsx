@@ -2,11 +2,11 @@ import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import CardList from '../../components/card-list/card-list';
 import FormSorting from '../../components/form-sorting/form-sorting';
+import Map from '../../components/map/map';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Settings } from '../../const';
 import { CardListProps } from '../../types';
-import Map from '../../components/map/map';
 
 function Main({ cards }: CardListProps): JSX.Element {
   return (
