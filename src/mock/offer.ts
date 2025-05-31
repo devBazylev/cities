@@ -13,13 +13,13 @@ export const cards: OfferProps[] = [
     type: 'apartment',
     city: {
       name: 'Amsterdam',
-      locations: {
+      location: {
         latitude: 52.3909553943508,
         longitude: 4.85309666406198,
         zoom: 10
       }
     },
-    locations: {
+    location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
       zoom: 1
@@ -36,13 +36,13 @@ export const cards: OfferProps[] = [
     type: 'room',
     city: {
       name: 'Amsterdam',
-      locations: {
+      location: {
         latitude: 52.3919553943508,
         longitude: 4.95359666406198,
         zoom: 10
       }
     },
-    locations: {
+    location: {
       latitude: 52.3919553943508,
       longitude: 4.95359666406198,
       zoom: 1
@@ -59,13 +59,13 @@ export const cards: OfferProps[] = [
     type: 'house',
     city: {
       name: 'Amsterdam',
-      locations: {
+      location: {
         latitude: 52.3409553943508,
         longitude: 4.90309666406198,
         zoom: 10
       }
     },
-    locations: {
+    location: {
       latitude: 52.3409553943508,
       longitude: 4.90309666406198,
       zoom: 1
@@ -82,13 +82,13 @@ export const cards: OfferProps[] = [
     type: 'hotel',
     city: {
       name: 'Amsterdam',
-      locations: {
+      location: {
         latitude: 52.3839553943508,
         longitude: 4.90309666406198,
         zoom: 10
       }
     },
-    locations: {
+    location: {
       latitude: 52.3839553943508,
       longitude: 4.90309666406198,
       zoom: 1

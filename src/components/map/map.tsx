@@ -19,8 +19,8 @@ type MapProps = {
 
 function Map ({ cards, place = 'cities' }: MapProps): JSX.Element {
   const locations = cards.map((card) => ({
-    latitude: card.locations.latitude,
-    longitude: card.locations.longitude
+    latitude: card.location.latitude,
+    longitude: card.location.longitude
   }));
 
   const city = cards[0].city;

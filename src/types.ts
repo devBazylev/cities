@@ -1,9 +1,14 @@
 import type { ChangeEvent } from 'react';
 import { AuthorizationStatus, cities } from './const';
+import { store } from './store';
+
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
 
 export type CityName = typeof cities[number];
 
-export type Locations = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
@@ -11,12 +16,12 @@ export type Locations = {
 
 export type City = {
   name: CityName;
-  locations: Locations;
+  location: Location;
 }
 
 export type MapProps = {
   city: City;
-  locations: Locations[];
+  location: Location[];
 }
 
 export type OfferProps = {
@@ -28,7 +33,7 @@ export type OfferProps = {
   rating: number;
   description: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
-  locations: Locations;
+  location: Location;
   city: City;
   onMouseMove?: () => void;
   onMouseLeave?: () => void;

@@ -13,10 +13,10 @@ export const useMap = (
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.locations.latitude,
-          lng: city.locations.longitude,
+          lat: city.location.latitude,
+          lng: city.location.longitude,
         },
-        zoom: city.locations.zoom,
+        zoom: city.location.zoom,
       });
 
       const layer = new TileLayer(
