@@ -11,7 +11,6 @@ function CardList(): JSX.Element {
   const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const displayedCards = (cards.length > 3) ? cards.slice(0, 3) : cards;
   // eslint-disable-next-line no-console
   console.log(cards);
 
@@ -30,7 +29,7 @@ function CardList(): JSX.Element {
         <b className="places__found">{cards.length} places to stay in {activeCity.name}</b>
         <FormSorting />
         <div className="cities__places-list places__list tabs__content">
-          {displayedCards?.map((card) => (
+          {cards?.map((card) => (
             <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />
           ))}
         </div>
