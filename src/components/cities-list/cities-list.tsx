@@ -1,9 +1,8 @@
-import type { CityName } from '../../types';
+import City from '../city/city';
+import { CityName } from '../../types';
 import { useDispatch } from 'react-redux';
-
 import { useAppSelector } from '../../hooks/useRedux';
 import { setCity } from '../../store/action';
-import City from '../city/city';
 import { cities } from '../../const';
 
 function CitiesList (): JSX.Element {

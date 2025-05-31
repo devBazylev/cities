@@ -1,14 +1,10 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import CardList from '../../components/card-list/card-list';
-import FormSorting from '../../components/form-sorting/form-sorting';
-import Map from '../../components/map/map';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Settings } from '../../const';
-import { CardListProps } from '../../types';
 import CitiesList from '../../components/cities-list/cities-list';
 
-function Main({ cards }: CardListProps): JSX.Element {
+function Main(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <HelmetProvider>
@@ -28,15 +24,7 @@ function Main({ cards }: CardListProps): JSX.Element {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{Settings.OffersCount} places to stay in Amsterdam</b>
-              <FormSorting />
-              <CardList cards={cards}/>
-            </section>
-            <div className="cities__right-section">
-              <Map cards={cards} />
-            </div>
+            <CardList />
           </div>
         </div>
       </main>

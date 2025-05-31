@@ -3,15 +3,15 @@ import Nav from '../../components/nav/nav';
 import FormOffer from '../../components/form-offer/form-offer';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import ReviewsItem from '../../components/reviews-item/reviews-item';
-import Map from '../../components/map/map';
-import CardList from '../../components/card-list/card-list';
+// import Map from '../../components/map/map';
+import CardListOffer from '../../components/card-list-offer/card-list-offer';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AuthorizationProps } from '../../types';
 import { AuthorizationStatus } from '../../const';
 import { reviews } from '../../mock/reviews';
 import { cards } from '../../mock/offer';
 
-const MAP_PLACE = 'property';
+// const MAP_PLACE = 'property';
 
 function Property({authorizationStatus}: AuthorizationProps): JSX.Element {
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
@@ -117,12 +117,12 @@ function Property({authorizationStatus}: AuthorizationProps): JSX.Element {
               </section>
             </div>
           </div>
-          <Map cards={cards} place={MAP_PLACE}/>
+          {/* <Map cards={cards} place={MAP_PLACE}/> */}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <CardList cards={cards} wrapName={'near-places'}/>
+            <CardListOffer cards={cards} wrapName={'near-places'}/>
           </section>
         </div>
       </main>

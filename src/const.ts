@@ -1,7 +1,12 @@
 import { cards } from './mock/offer';
 import { Location, CityName } from './types';
+import markerIcon from './components/map/assets/pin.svg';
+import activeMarkerIcon from './components/map/assets/pin-active.svg';
 
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+
+const URL_MARKER_DEFAULT = markerIcon;
+const URL_MARKER_CURRENT = activeMarkerIcon;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -52,3 +57,5 @@ export const CityLocation: { [key in CityName]: Location } = {
     zoom: 13
   },
 };
+
+export { URL_MARKER_DEFAULT, URL_MARKER_CURRENT };

@@ -8,9 +8,9 @@ import { ScrollToTop } from '../../utils';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import type { CardListProps } from '../../types';
-// // eslint-disable-next-line no-console
-// /* eslint-disable */
-// // @ts-ignore
+// eslint-disable-next-line no-console
+/* eslint-disable */
+// @ts-ignore
 
 function App({ cards }: CardListProps ): JSX.Element {
   return (
@@ -18,7 +18,7 @@ function App({ cards }: CardListProps ): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route path="/">
-          <Route index element={<Main cards={cards}/>}/>
+          <Route index element={<Main />}/>
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={`${AppRoute.Offer}/:id`} element={<Offer authorizationStatus={AuthorizationStatus.Auth} />} />
           <Route path={AppRoute.Favorites} element={

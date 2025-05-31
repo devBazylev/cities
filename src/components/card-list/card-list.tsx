@@ -1,27 +1,44 @@
-import type { CardListProps } from '../../types';
 import Card from '../card/card';
-import { useState } from 'react';
+import Map from '../../components/map/map';
+import { useAppSelector } from '../../hooks/useRedux';
+import { useState, Fragment } from 'react';
+import FormSorting from '../form-sorting/form-sorting';
 
-type ListProps = {
-  cards: CardListProps['cards'];
-  wrapName?: 'cities' | 'near-places' | 'favorites';
-}
-
-function CardList({ cards, wrapName = 'cities' }: ListProps): JSX.Element {
+/* eslint-disable */
+// @ts-ignore
+function CardList(): JSX.Element {
+  const activeCity = useAppSelector((state) => state.city);
+  const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
+  const displayedCards = (cards.length > 3) ? cards.slice(0, 3) : cards;
+  // eslint-disable-next-line no-console
+  console.log(cards);
 
-  const displayedCards = (wrapName === 'near-places' && cards.length > 3) ? cards.slice(0, 3) : cards;
+  const handleMouseMove = (id: number) => {
+    setActiveOffer(id);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveOffer(null);
+  };
 
   return (
-    <div className={wrapName === 'cities' ? 'cities__places-list places__list tabs__content' : 'near-places__list places__list'}>
-      {displayedCards?.map((card) => (
-        <Card key={card.id} wrapName={wrapName} {...card}
-          onMouseMove={() => setActiveOffer(card.id)}
-          onMouseLeave={() => setActiveOffer(null)}
-        />
-      ))}
-    </div>
+    <Fragment>
+      <section className="cities__places places">
+        <h2 className="visually-hidden">Places</h2>
+        <b className="places__found">{cards.length} places to stay in {activeCity.name}</b>
+        <FormSorting />
+        <div className="cities__places-list places__list tabs__content">
+          {displayedCards?.map((card) => (
+            <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />
+          ))}
+        </div>
+      </section>
+      <div className="cities__right-section">
+        <Map city={activeCity} cards={cards} />
+      </div>
+    </Fragment>
   );
 }
 

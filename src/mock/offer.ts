@@ -12,7 +12,7 @@ export const cards: OfferProps[] = [
     description: 'Beautiful &amp; luxurious apartment at great location',
     type: 'apartment',
     city: {
-      name: 'Amsterdam',
+      name: 'Paris',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.85309666406198,
@@ -35,7 +35,7 @@ export const cards: OfferProps[] = [
     description: 'Wood and stone place',
     type: 'room',
     city: {
-      name: 'Amsterdam',
+      name: 'Cologne',
       location: {
         latitude: 52.3919553943508,
         longitude: 4.95359666406198,

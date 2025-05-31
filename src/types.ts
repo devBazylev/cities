@@ -1,4 +1,4 @@
-import type { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { AuthorizationStatus, cities } from './const';
 import { store } from './store';
 
