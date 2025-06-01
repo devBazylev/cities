@@ -6,11 +6,24 @@ import { Link } from 'react-router-dom';
 import { getCityId } from '../../utils';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import { useAppSelector } from '../../hooks/useRedux';
+import Card from '../../components/card/card';
+import { useState } from 'react';
 
 function Favorites(): JSX.Element {
-  const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [activeOffer, setActiveOffer] = useState<number | null>(null);
+  const cards = useAppSelector((state) => state.offers);
   const cardsMarked = cards.filter((card) => card.isMarked);
   const cities = Array.from(new Set(cardsMarked.map((elem) => elem.city.name)));
+  const WRAP_NAME = 'favorites';
+
+  const handleMouseMove = (id: number) => {
+    setActiveOffer(id);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveOffer(null);
+  };
 
   return (
     <div className="page">
@@ -38,41 +51,8 @@ function Favorites(): JSX.Element {
                       </div>
                     </div>
                     <div className="favorites__places">
-                      {cardsMarked.filter((card) => city === card.city.name).map(({id, img, isPremium, price, isMarked, rating, description, type}) => (
-                        <article className="favorites__card place-card" key={id}>
-                          {isPremium && (<div className="place-card__mark"><span>Premium</span></div>)}
-                          <div className="favorites__image-wrapper place-card__image-wrapper">
-                            <Link to="#">
-                              <img className="place-card__image" src={img} width={150} height={110} alt="Place" />
-                            </Link>
-                          </div>
-                          <div className="favorites__card-info place-card__info">
-                            <div className="place-card__price-wrapper">
-                              <div className="place-card__price">
-                                <b className="place-card__price-value">€{price}</b>
-                                <span className="place-card__price-text">/&nbsp;night</span>
-                              </div>
-                              <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                                <svg className="place-card__bookmark-icon" width={18} height={19}>
-                                  <use xlinkHref="#icon-bookmark" />
-                                </svg>
-                                <span className="visually-hidden">{isMarked}</span>
-                              </button>
-                            </div>
-                            <div className="place-card__rating rating">
-                              <div className="place-card__stars rating__stars">
-                                <span style={{width: `${rating * 20}%`}} />
-                                <span className="visually-hidden">{rating}</span>
-                              </div>
-                            </div>
-                            <h2 className="place-card__name">
-                              <Link to="#">
-                                {description}
-                              </Link>
-                            </h2>
-                            <p className="place-card__type">{type}</p>
-                          </div>
-                        </article>
+                      {cardsMarked.filter((card) => city === card.city.name).map((card) => (
+                        <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} wrapName={WRAP_NAME} />
                       ))}
                     </div>
                   </li>

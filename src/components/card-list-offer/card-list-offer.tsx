@@ -9,6 +9,7 @@ import Map from '../map/map';
 
 function CardListOffer(): JSX.Element {
   const PROPERTY = 'property';
+  const WRAP_NAME = 'near-places';
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
@@ -125,7 +126,7 @@ function CardListOffer(): JSX.Element {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className='near-places__list places__list'>
             {displayedCards?.map((card) => (
-              <Card key={card.id} wrapName={'near-places'} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />
+              <Card key={card.id} wrapName={WRAP_NAME} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />
             ))}
           </div>
         </section>
