@@ -3,13 +3,15 @@ import Nav from '../../components/nav/nav';
 import Footer from '../../components/footer/footer';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { CardListProps } from '../../types';
 import { getCityId } from '../../utils';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
+import { useAppSelector } from '../../hooks/useRedux';
 
-function Favorites({ cards }: CardListProps): JSX.Element {
+function Favorites(): JSX.Element {
+  const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
   const cardsMarked = cards.filter((card) => card.isMarked);
   const cities = Array.from(new Set(cardsMarked.map((elem) => elem.city.name)));
+
   return (
     <div className="page">
       <HelmetProvider>

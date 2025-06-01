@@ -7,12 +7,11 @@ import PrivateRoute from '../private-route/private-route';
 import { ScrollToTop } from '../../utils';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import type { CardListProps } from '../../types';
 // eslint-disable-next-line no-console
 /* eslint-disable */
 // @ts-ignore
 
-function App({ cards }: CardListProps ): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -27,7 +26,7 @@ function App({ cards }: CardListProps ): JSX.Element {
           } />
           <Route path={AppRoute.Favorites} element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <Favorites cards={cards} />
+              <Favorites />
             </PrivateRoute>
           } />
           <Route path="*" element={<Error />}/>
