@@ -1,18 +1,14 @@
 import Card from '../card/card';
-import Map from '../../components/map/map';
+import Map from '../map/map';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useState, Fragment } from 'react';
 import FormSorting from '../form-sorting/form-sorting';
 
-/* eslint-disable */
-// @ts-ignore
-function CardList(): JSX.Element {
-  const activeCity = useAppSelector((state) => state.city);
-  const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
+function CardListMain(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  // eslint-disable-next-line no-console
-  console.log(cards);
+  const activeCity = useAppSelector((state) => state.city);
+  const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
 
   const handleMouseMove = (id: number) => {
     setActiveOffer(id);
@@ -41,4 +37,4 @@ function CardList(): JSX.Element {
   );
 }
 
-export default CardList;
+export default CardListMain;

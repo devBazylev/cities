@@ -17,7 +17,7 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-const Map = ({ city, cards, place = 'cities' }: MapProps): JSX.Element => {
+function Map ({ city, cards, place = 'cities' }: MapProps): JSX.Element {
   const mapRef = useRef<HTMLElement | null>(null);
   const map = useMap(mapRef, city);
 
@@ -54,6 +54,6 @@ const Map = ({ city, cards, place = 'cities' }: MapProps): JSX.Element => {
   }, [map, city, locations]);
 
   return <section className={`${place}__map map`} ref={mapRef} />;
-};
+}
 
 export default Map;

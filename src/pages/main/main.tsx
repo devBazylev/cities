@@ -1,6 +1,6 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
-import CardList from '../../components/card-list/card-list';
+import CardListMain from '../../components/card-list-main/card-list-main';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import CitiesList from '../../components/cities-list/cities-list';
 
@@ -24,7 +24,7 @@ function Main(): JSX.Element {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <CardList />
+            <CardListMain />
           </div>
         </div>
       </main>

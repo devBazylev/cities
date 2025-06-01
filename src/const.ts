@@ -1,4 +1,3 @@
-import { cards } from './mock/offer';
 import { Location, CityName } from './types';
 import markerIcon from './components/map/assets/pin.svg';
 import activeMarkerIcon from './components/map/assets/pin-active.svg';
@@ -20,10 +19,6 @@ export enum AppRoute {
   Favorites = '/favorites',
   Offer = '/offer',
 }
-
-export const Settings = {
-  OffersCount: cards.length,
-};
 
 export const CityLocation: { [key in CityName]: Location } = {
   'Paris': {
