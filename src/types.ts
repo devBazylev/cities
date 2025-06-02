@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { AuthorizationStatus, cities } from './const';
+import { AuthorizationStatus, cities, Sorting } from './const';
 import { store } from './store';
 
 export type State = ReturnType<typeof store.getState>;
@@ -70,3 +70,5 @@ export type OfferForm = {
   onRatingChange?: (rating: number) => void;
   onSubmit?: (evt: React.FormEvent) => void;
 };
+
+export type SortName= keyof typeof Sorting;

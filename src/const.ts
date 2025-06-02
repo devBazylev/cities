@@ -1,4 +1,4 @@
-import { Location, CityName } from './types';
+import { Location, CityName, OfferProps } from './types';
 import markerIcon from './components/map/assets/pin.svg';
 import activeMarkerIcon from './components/map/assets/pin-active.svg';
 
@@ -51,6 +51,22 @@ export const CityLocation: { [key in CityName]: Location } = {
     longitude: 6.776314,
     zoom: 8
   },
+};
+
+export enum Sorting {
+  Popular = 'Popular',
+  PriceIncrease= 'Price: low to high',
+  PriceDecrease= 'Price: high to low',
+  TopRated = 'Top rated first',
+}
+
+export const Comparator: {
+  [key in Sorting]: (a: OfferProps, b: OfferProps) => number
+} = {
+  [Sorting.Popular]: () => 0,
+  [Sorting.PriceIncrease]: (a: OfferProps, b: OfferProps) => a.price - b.price,
+  [Sorting.PriceDecrease]: (a: OfferProps, b: OfferProps) => b.price - a.price,
+  [Sorting.TopRated]: (a: OfferProps, b: OfferProps) => b.rating - a.rating,
 };
 
 export { URL_MARKER_DEFAULT, URL_MARKER_CURRENT };
