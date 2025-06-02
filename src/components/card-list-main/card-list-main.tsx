@@ -44,7 +44,7 @@ function CardListMain(): JSX.Element {
         </div>
       </section>
       <div className="cities__right-section">
-        <Map city={activeCity} cards={cards} />
+        <Map locations={cards.map(({ id, city }) => ({ id, ...city }))} activeCity={activeCity} activeOffer={activeOffer} />
       </div>
     </Fragment>
   );

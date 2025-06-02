@@ -119,7 +119,7 @@ function CardListOffer(): JSX.Element {
             </section>
           </div>
         </div>
-        <Map city={activeCity} cards={cards} place={PROPERTY}/>
+        <Map locations={cards.map(({ id, city }) => ({ id, ...city }))} activeCity={activeCity} activeOffer={activeOffer} place={PROPERTY} />
       </section>
       <div className="container">
         <section className="near-places places">
