@@ -12,17 +12,17 @@ export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
-}
+};
 
 export type City = {
   name: CityName;
   location: Location;
-}
+};
 
 export type MapProps = {
   city: City;
   location: Location[];
-}
+};
 
 export type OfferProps = {
   id: number;
@@ -33,7 +33,6 @@ export type OfferProps = {
   rating: number;
   description: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
-  location: Location;
   city: City;
   onMouseMove?: () => void;
   onMouseLeave?: () => void;
@@ -49,11 +48,11 @@ export type ReviewProps = {
     avatarUrl: string;
     isPro?: boolean;
   };
-}
+};
 
 export type AuthorizationProps = {
   authorizationStatus: AuthorizationStatus;
-}
+};
 
 export type PrivateRouteProps = AuthorizationProps & {
   children: JSX.Element;

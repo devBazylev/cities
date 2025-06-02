@@ -14,7 +14,7 @@ function CardListMain(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const activeCity = useAppSelector((state) => state.city);
   const cards = useAppSelector((state) =>
-    state.offers
+    [...state.offers]
       .filter((offer) => offer.city.name === state.city.name)
       .sort(Comparator[state.sorting] as (a: OfferProps, b: OfferProps) => number)
   );

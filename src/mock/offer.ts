@@ -19,11 +19,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 48.8909553943508,
-      longitude: 1.95309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -41,11 +36,6 @@ export const cards: OfferProps[] = [
         longitude: 2.40300666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 48.7909553943508,
-      longitude: 2.40300666406198,
-      zoom: 1
     },
   },
   {
@@ -65,11 +55,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 48.6009553943508,
-      longitude: 2.35309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -87,11 +72,6 @@ export const cards: OfferProps[] = [
         longitude: 2.46809666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 48.6009553943508,
-      longitude: 2.35309666406198,
-      zoom: 1
     },
   },
   {
@@ -111,11 +91,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 51.3909553943508,
-      longitude: 6.85309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -133,11 +108,6 @@ export const cards: OfferProps[] = [
         longitude: 6.15309666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 51.1901553943508,
-      longitude: 6.15309666406198,
-      zoom: 1
     },
   },
   {
@@ -157,11 +127,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 51.3909553943508,
-      longitude: 7.05309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -179,11 +144,6 @@ export const cards: OfferProps[] = [
         longitude: 4.95359666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 50.3919553943508,
-      longitude: 4.95359666406198,
-      zoom: 1
     },
   },
   {
@@ -203,11 +163,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 50.6919553943508,
-      longitude: 4.55359666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -225,11 +180,6 @@ export const cards: OfferProps[] = [
         longitude: 4.45359666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 50.6919553943508,
-      longitude: 4.55359666406198,
-      zoom: 1
     },
   },
   {
@@ -249,11 +199,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -271,11 +216,6 @@ export const cards: OfferProps[] = [
         longitude: 4.95359666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 52.3919553943508,
-      longitude: 4.95359666406198,
-      zoom: 1
     },
   },
   {
@@ -295,11 +235,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 52.3409553943508,
-      longitude: 4.90309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -317,11 +252,6 @@ export const cards: OfferProps[] = [
         longitude: 4.90309666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 52.3839553943508,
-      longitude: 4.90309666406198,
-      zoom: 1
     },
   },
   {
@@ -341,11 +271,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 53.3409553943508,
-      longitude: 9.90309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -363,11 +288,6 @@ export const cards: OfferProps[] = [
         longitude: 9.40309666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 52.3839553943508,
-      longitude: 4.90309666406198,
-      zoom: 1
     },
   },
   {
@@ -387,11 +307,6 @@ export const cards: OfferProps[] = [
         zoom: 10
       }
     },
-    location: {
-      latitude: 51.3909553943508,
-      longitude: 6.85309666406198,
-      zoom: 1
-    },
   },
   {
     id: getCardId(),
@@ -409,11 +324,6 @@ export const cards: OfferProps[] = [
         longitude: 6.30909666406198,
         zoom: 10
       }
-    },
-    location: {
-      latitude: 51.0709553943508,
-      longitude: 6.30909666406198,
-      zoom: 1
     },
   },
 ];
