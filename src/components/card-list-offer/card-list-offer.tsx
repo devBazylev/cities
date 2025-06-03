@@ -11,6 +11,9 @@ function CardListOffer(): JSX.Element {
   const PROPERTY = 'property';
   const WRAP_NAME = 'near-places';
 
+  // temporary
+  const isAuth = true;
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const activeCity = useAppSelector((state) => state.city);
@@ -115,7 +118,7 @@ function CardListOffer(): JSX.Element {
                   <ReviewsItem key={review.id} {...review} />
                 ))}
               </ReviewsList>
-              <FormOffer />
+              {isAuth && <FormOffer />}
             </section>
           </div>
         </div>
