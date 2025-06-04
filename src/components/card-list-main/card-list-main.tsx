@@ -7,12 +7,9 @@ import { SortName } from '../../types';
 import { sortingValues } from '../../const';
 
 function CardListMain(): JSX.Element {
-  // const dispatch = useAppDispatch();
-  // const activeSorting = useAppSelector((state) => state.sorting);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const activeCity = useAppSelector((state) => state.city);
   const [sortValue, setSortValue] = useState<SortName>('Popular');
+  const activeCity = useAppSelector((state) => state.city);
 
   const handleMouseMove = (id: number) => {
     setActiveOffer(id);
@@ -43,7 +40,7 @@ function CardListMain(): JSX.Element {
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{cards.length} places to stay in {activeCity.name}</b>
-        <SortingList sortValue={sortValue} onSortClick={setSortValue}/>
+        <SortingList sortValue={sortValue} onSortClick={setSortValue} />
         <div className="cities__places-list places__list tabs__content">
           {cards?.map((card) => (
             <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />
