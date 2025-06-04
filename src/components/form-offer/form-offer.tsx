@@ -17,17 +17,28 @@ function FormOffer(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
+
     (async () => {
-      if (inputRef.current) {
-        const response = await fetch('https://echo.htmlacademy.ru', {
-          method: 'POST',
-          body: new FormData(inputRef.current).get('review')
-        });
-        if (response.ok) {
-          // eslint-disable-next-line no-alert
-          alert('ACHTUNG! The review has been published');
+      try {
+        if (inputRef.current) {
+          const formData = new FormData(inputRef.current);
+          const response = await fetch('https://echo.htmlacademy.ru', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+            // eslint-disable-next-line no-alert
+            alert('ACHTUNG! The review has been published');
+            setReview({ rating: 0, review: '' });
+          } else {
+            // eslint-disable-next-line no-alert
+            alert('Error submitting the review. Please try again');
+          }
         }
-        setReview({ rating: 0, review: '' });
+      } catch (error) {
+        // eslint-disable-next-line no-alert
+        alert('An error occurred during submission. Please try again later');
       }
     })();
   };
