@@ -1,23 +1,18 @@
 import Card from '../card/card';
 import Map from '../map/map';
-import { useAppSelector, useAppDispatch } from '../../hooks/useRedux';
-import { useState, Fragment } from 'react';
 import SortingList from '../sorting-list/sorting-list';
-import { SortName, OfferProps } from '../../types';
-import { setSorting } from '../../store/action';
-import { Comparator} from '../../const';
+import { useAppSelector } from '../../hooks/useRedux';
+import { useState, Fragment } from 'react';
+import { SortName } from '../../types';
+import { sortingValues } from '../../const';
 
 function CardListMain(): JSX.Element {
-  const dispatch = useAppDispatch();
-  const activeSorting = useAppSelector((state) => state.sorting);
+  // const dispatch = useAppDispatch();
+  // const activeSorting = useAppSelector((state) => state.sorting);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const activeCity = useAppSelector((state) => state.city);
-  const cards = useAppSelector((state) =>
-    [...state.offers]
-      .filter((offer) => offer.city.name === state.city.name)
-      .sort(Comparator[state.sorting] as (a: OfferProps, b: OfferProps) => number)
-  );
+  const [sortValue, setSortValue] = useState<SortName>('Popular');
 
   const handleMouseMove = (id: number) => {
     setActiveOffer(id);
@@ -27,16 +22,28 @@ function CardListMain(): JSX.Element {
     setActiveOffer(null);
   };
 
-  const onSortingChange = (name: SortName) => {
-    dispatch(setSorting(name));
-  };
+  let cards = useAppSelector((state) => state.offers).filter((card) => card.city.name === activeCity.name);
+  const cardsByPriceLowToHigh = cards.slice().sort((a, b) => a.price - b.price);
+  const cardsByPriceHighToLow = cards.slice().sort((a, b) => b.price - a.price);
+  const cardsByRated = cards.slice().sort((a, b) => b.rating - a.rating);
+
+  switch(sortValue) {
+    case sortingValues[1]: cards = cardsByPriceLowToHigh;
+      break;
+    case sortingValues[2]: cards = cardsByPriceHighToLow;
+      break;
+    case sortingValues[3]: cards = cardsByRated;
+      break;
+    default:
+      break;
+  }
 
   return (
     <Fragment>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{cards.length} places to stay in {activeCity.name}</b>
-        <SortingList onChange={onSortingChange} activeSorting={activeSorting} />
+        <SortingList sortValue={sortValue} onSortClick={setSortValue}/>
         <div className="cities__places-list places__list tabs__content">
           {cards?.map((card) => (
             <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />

@@ -1,40 +1,34 @@
-import { useState } from 'react';
-import { Sorting } from '../../const';
+import { sortingValues } from '../../const';
 import { SortName } from '../../types';
 
 type SortingListProps = {
-  onChange: (name: SortName) => void;
-  activeSorting: SortName;
+  sortValue: SortName;
+  onSortClick: (value: SortName) => void;
 };
 
-function SortingList ({ onChange, activeSorting }: SortingListProps): JSX.Element {
-  const [isOpened, setIsOpened] = useState<boolean>(false);
-
-  const handleToggleButtonClick = () => {
-    setIsOpened(!isOpened);
-  };
-
-  const handleSortItemClick = (name: SortName) => {
-    setIsOpened(false);
-    onChange(name);
-  };
-
+function SortingList ({ sortValue, onSortClick }: SortingListProps): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0} onClick={handleToggleButtonClick}>
-        {Sorting[activeSorting]}
+      <span className="places__sorting-type" tabIndex={0}>
+        {sortValue}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      {isOpened && (
-        <ul className="places__options places__options--custom places__options--opened">
-          {(Object.entries(Sorting) as [SortName, Sorting][]).map(([name, title]) => (
-            <li key={name} className={`places__option${name === activeSorting ? ' places__option--active' : ''}`} onClick={() => handleSortItemClick(name)} tabIndex={0}>{title}</li>
-          ))}
-        </ul>
-      )}
+      <ul className="places__options places__options--custom places__options--opened">
+        {sortingValues.map((value) => (
+          <li
+            key={value}
+            className={`places__option ${value === sortValue ? 'places__option--active' : ''}`}
+            tabIndex={0}
+            onClick={() => onSortClick(value)}
+          >
+            {value}
+          </li>
+
+        ))}
+      </ul>
     </form>
   );
 }

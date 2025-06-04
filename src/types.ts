@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { AuthorizationStatus, cities, Sorting } from './const';
+import { AuthorizationStatus, cities, sortingValues } from './const';
 import { store } from './store';
 
 export type State = ReturnType<typeof store.getState>;
@@ -70,4 +70,4 @@ export type OfferForm = {
   onSubmit?: (evt: React.FormEvent) => void;
 };
 
-export type SortName= keyof typeof Sorting;
+export type SortName = typeof sortingValues[number];
