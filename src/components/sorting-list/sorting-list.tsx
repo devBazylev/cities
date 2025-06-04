@@ -18,15 +18,7 @@ function SortingList ({ sortValue, onSortClick }: SortingListProps): JSX.Element
       </span>
       <ul className="places__options places__options--custom places__options--opened">
         {sortingValues.map((value) => (
-          <li
-            key={value}
-            className={`places__option ${value === sortValue ? 'places__option--active' : ''}`}
-            tabIndex={0}
-            onClick={() => onSortClick(value)}
-          >
-            {value}
-          </li>
-
+          <li key={value} className={`places__option ${value === sortValue ? 'places__option--active' : ''}`} tabIndex={0} onClick={() => onSortClick(value)}>{value}</li>
         ))}
       </ul>
     </form>
