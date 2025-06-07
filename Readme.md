@@ -1,13 +1,9 @@
-# Руководство по работе с проектом
+# Guide to Working on the Project
 
-Данный проект создан с помощью [Create React App](https://github.com/facebook/create-react-app).
+This project was created with the help of [Create React App](https://github.com/facebook/create-react-app).
 
-### Сборка проекта
+### Project Build
 
 ```bash
 npm run build
 ```
-
-Во время выполнения инструкций по сборке проекта, в корне проекта создается директория `build`, в которую будут помещены результирующие файлы. После сборки проект готов к публикации.
-
-Подробную информацию вы можете найти на странице [Развертывание проекта](https://facebook.github.io/create-react-app/docs/deployment).
