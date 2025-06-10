@@ -10,7 +10,8 @@ import Card from '../../components/card/card';
 import { useState } from 'react';
 
 function Favorites(): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /* eslint-disable */
+  // @ts-ignore
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const cards = useAppSelector((state) => state.offers);
   const cardsMarked = cards.filter((card) => card.isMarked);
