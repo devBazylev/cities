@@ -1,15 +1,15 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import CardListMain from '../../components/card-list-main/card-list-main';
-import { Helmet } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import CitiesList from '../../components/cities-list/cities-list';
 
 function Main(): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <Helmet>
+      <HelmetProvider >
         <title>Главная страница</title>
-      </Helmet>
+      </HelmetProvider>
       <Header>
         <Nav />
       </Header>

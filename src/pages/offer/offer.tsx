@@ -1,14 +1,14 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import CardListOffer from '../../components/card-list-offer/card-list-offer';
-import { Helmet } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 
 function Property(): JSX.Element {
   return (
     <div className="page">
-      <Helmet>
+      <HelmetProvider >
         <title>Страница предложения</title>
-      </Helmet>
+      </HelmetProvider >
       <Header>
         <Nav />
       </Header>

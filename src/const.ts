@@ -21,6 +21,15 @@ export enum AppRoute {
   Offer = '/offer',
 }
 
+export enum APIRoute {
+  Offers = '/offers',
+  Comments = '/comments',
+  Favorite = '/favorite',
+  Login = '/login',
+  Logout = '/logout',
+  NotFound = '/404'
+}
+
 export const CityLocation: { [key in CityName]: Location } = {
   'Paris': {
     latitude: 48.85661,

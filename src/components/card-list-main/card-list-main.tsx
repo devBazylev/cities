@@ -1,6 +1,7 @@
 import Card from '../card/card';
 import Map from '../map/map';
 import SortingList from '../sorting-list/sorting-list';
+import Spinner from '../spinner/spinner';
 import { useAppSelector } from '../../hooks/useRedux';
 import { useState, Fragment } from 'react';
 import { SortName } from '../../types';
@@ -10,6 +11,7 @@ function CardListMain(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const [sortValue, setSortValue] = useState<SortName>('Popular');
   const activeCity = useAppSelector((state) => state.city);
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
 
   const handleMouseMove = (id: number) => {
     setActiveOffer(id);
@@ -33,6 +35,10 @@ function CardListMain(): JSX.Element {
       break;
     default:
       break;
+  }
+
+  if (isOffersLoading) {
+    return <Spinner />;
   }
 
   return (

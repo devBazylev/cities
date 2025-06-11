@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import Nav from '../../components/nav/nav';
 import Footer from '../../components/footer/footer';
-import { Helmet } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCityId } from '../../utils';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
@@ -28,9 +28,9 @@ function Favorites(): JSX.Element {
 
   return (
     <div className="page">
-      <Helmet>
+      <HelmetProvider>
         <title>Страница избранное</title>
-      </Helmet>
+      </HelmetProvider>
       <Header>
         <Nav />
       </Header>
