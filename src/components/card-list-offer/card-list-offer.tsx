@@ -14,7 +14,6 @@ function CardListOffer(): JSX.Element {
   // temporary
   const isAuth = true;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const activeCity = useAppSelector((state) => state.city);
   const cards = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name));
@@ -122,7 +121,7 @@ function CardListOffer(): JSX.Element {
             </section>
           </div>
         </div>
-        <Map locations={cards.map(({ id, city }) => ({ id, ...city }))} activeCity={activeCity} activeOffer={activeOffer} place={PROPERTY} />
+        <Map locations={cards.map(({ id, location }) => ({ id, latitude: location.latitude, longitude: location.longitude, zoom: location.zoom, }))} activeCity={activeCity} activeOffer={activeOffer} place={PROPERTY} />
       </section>
       <div className="container">
         <section className="near-places places">

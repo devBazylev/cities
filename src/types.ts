@@ -16,7 +16,7 @@ export type Location = {
 
 export type City = {
   name: CityName;
-  location: Location;
+  location?: Location;
 };
 
 export type MapProps = {
@@ -36,6 +36,7 @@ export type OfferProps = {
   city: City;
   onMouseMove?: () => void;
   onMouseLeave?: () => void;
+  location: Location;
 };
 
 export type ReviewProps = {

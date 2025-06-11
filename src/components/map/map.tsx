@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
 import { useMap } from './useMap';
-import { City } from '../../types';
+import { City, Location } from '../../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT, CityLocation } from '../../const';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
   activeCity: City;
-  locations: (City & { id?: number })[];
+  locations: (Location & { id?: number })[];
   activeOffer?: number | null;
   place?: 'cities' | 'property';
 }
@@ -36,7 +36,7 @@ function Map ({ activeCity, locations, activeOffer = null, place = 'cities' }: M
     markersRef.current = [];
 
     if (map) {
-      locations.forEach(({ location: { latitude: lat, longitude: lng }, id }) => {
+      locations.forEach(({ latitude: lat, longitude: lng , id }) => {
         const marker = new Marker({ lat, lng });
         const isActive = activeOffer !== null && id !== undefined && id === activeOffer;
 
