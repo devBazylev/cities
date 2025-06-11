@@ -27,7 +27,7 @@ export type MapProps = {
 export type OfferProps = {
   id: number;
   isPremium: boolean;
-  img: string;
+  previewImage: string;
   price: number;
   isMarked: boolean;
   rating: number;

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-// import { SortName } from './types';
 
 function ScrollToTop() {
   const {pathname} = useLocation();

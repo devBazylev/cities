@@ -6,7 +6,7 @@ type CardProps = OfferProps & {
   wrapName?: 'cities' | 'near-places' | 'favorites';
 };
 
-function Card({id, img, isPremium, price, isMarked, rating, description, type, onMouseMove, onMouseLeave, wrapName = 'cities'}: CardProps): JSX.Element {
+function Card({id, previewImage, isPremium, price, isMarked, rating, description, type, onMouseMove, onMouseLeave, wrapName = 'cities'}: CardProps): JSX.Element {
   let articleClassName = '';
 
   switch (wrapName) {
@@ -30,7 +30,7 @@ function Card({id, img, isPremium, price, isMarked, rating, description, type, o
       {isPremium && (<div className="place-card__mark"><span>Premium</span></div>)}
       <div className={`${wrapName}__image-wrapper place-card__image-wrapper`} style={wrapStyle}>
         <Link to={`${AppRoute.Offer}/${id}`}>
-          <img className="place-card__image" src={img} width={260} height={200} alt="Place" />
+          <img className="place-card__image" src={previewImage} width={260} height={200} alt="Place" />
         </Link>
       </div>
       <div className={`${wrapName === 'favorites' ? 'favorites__card-info' : ''} place-card__info`}>

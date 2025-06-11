@@ -5,7 +5,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-01.jpg',
+    previewImage: 'img/apartment-01.jpg',
     price: 182,
     isMarked: false,
     rating: 3.3,
@@ -23,7 +23,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-02.jpg',
+    previewImage: 'img/apartment-02.jpg',
     price: 93,
     isMarked: false,
     rating: 4.1,
@@ -41,7 +41,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-03.jpg',
+    previewImage: 'img/apartment-03.jpg',
     price: 126,
     isMarked: true,
     rating: 3.8,
@@ -59,7 +59,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-04.jpg',
+    previewImage: 'img/apartment-04.jpg',
     price: 195,
     isMarked: true,
     rating: 2.6,
@@ -77,7 +77,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-05.jpg',
+    previewImage: 'img/apartment-05.jpg',
     price: 184,
     isMarked: false,
     rating: 2.3,
@@ -95,7 +95,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-06.jpg',
+    previewImage: 'img/apartment-06.jpg',
     price: 99,
     isMarked: false,
     rating: 1.1,
@@ -113,7 +113,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-07.jpg',
+    previewImage: 'img/apartment-07.jpg',
     price: 121,
     isMarked: true,
     rating: 2.6,
@@ -131,7 +131,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-08.jpg',
+    previewImage: 'img/apartment-08.jpg',
     price: 84,
     isMarked: false,
     rating: 4.4,
@@ -149,7 +149,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-09.jpg',
+    previewImage: 'img/apartment-09.jpg',
     price: 122,
     isMarked: true,
     rating: 3.4,
@@ -167,7 +167,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-10.jpg',
+    previewImage: 'img/apartment-10.jpg',
     price: 115,
     isMarked: false,
     rating: 5,
@@ -185,7 +185,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-11.jpg',
+    previewImage: 'img/apartment-11.jpg',
     price: 120,
     isMarked: true,
     rating: 3.8,
@@ -203,7 +203,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-12.jpg',
+    previewImage: 'img/apartment-12.jpg',
     price: 80,
     isMarked: false,
     rating: 4.4,
@@ -221,7 +221,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-13.jpg',
+    previewImage: 'img/apartment-13.jpg',
     price: 132,
     isMarked: true,
     rating: 3.4,
@@ -239,7 +239,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-14.jpg',
+    previewImage: 'img/apartment-14.jpg',
     price: 155,
     isMarked: true,
     rating: 5,
@@ -257,7 +257,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-15.jpg',
+    previewImage: 'img/apartment-15.jpg',
     price: 162,
     isMarked: true,
     rating: 4.7,
@@ -275,7 +275,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-16.jpg',
+    previewImage: 'img/apartment-16.jpg',
     price: 175,
     isMarked: true,
     rating: 2.6,
@@ -293,7 +293,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: true,
-    img: 'img/apartment-17.jpg',
+    previewImage: 'img/apartment-17.jpg',
     price: 169,
     isMarked: true,
     rating: 3.8,
@@ -311,7 +311,7 @@ export const cards: OfferProps[] = [
   {
     id: getCardId(),
     isPremium: false,
-    img: 'img/apartment-18.jpg',
+    previewImage: 'img/apartment-18.jpg',
     price: 45,
     isMarked: false,
     rating: 4.4,
