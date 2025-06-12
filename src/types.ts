@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { AuthorizationStatus, cities, sortingValues } from './const';
+import { cities, sortingValues } from './const';
 import { store } from './store';
 
 export type State = ReturnType<typeof store.getState>;
@@ -51,13 +51,16 @@ export type ReviewProps = {
   };
 };
 
-export type AuthorizationProps = {
-  authorizationStatus: AuthorizationStatus;
+export type User = {
+    id: number;
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+    email: string;
+    token: string;
 };
 
-export type PrivateRouteProps = AuthorizationProps & {
-  children: JSX.Element;
-};
+export type UserAuth = Pick<User, 'email'> & { password: string };
 
 export type CardListProps = {
   cards: OfferProps[];

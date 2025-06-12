@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getCityId } from '../../utils';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
-import { useAppSelector } from '../../hooks/useRedux';
+import { useAppSelector } from '../../hooks';
 import Card from '../../components/card/card';
 import { useState } from 'react';
 

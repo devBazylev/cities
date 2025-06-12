@@ -1,6 +1,6 @@
 import Card from '../card/card';
 import { useState, Fragment } from 'react';
-import { useAppSelector } from '../../hooks/useRedux';
+import { useAppSelector } from '../../hooks';
 import { reviews } from '../../mock/reviews';
 import FormOffer from '../../components/form-offer/form-offer';
 import ReviewsList from '../../components/reviews-list/reviews-list';

@@ -6,7 +6,7 @@ import Error from '../../pages/error/error';
 import PrivateRoute from '../private-route/private-route';
 import { ScrollToTop } from '../../utils';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 // eslint-disable-next-line no-console
 /* eslint-disable */
 // @ts-ignore
@@ -20,12 +20,12 @@ function App(): JSX.Element {
           <Route index element={<Main />}/>
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={`${AppRoute.Offer}/:id`} element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute>
               <Offer />
             </PrivateRoute>
           } />
           <Route path={AppRoute.Favorites} element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute>
               <Favorites />
             </PrivateRoute>
           } />

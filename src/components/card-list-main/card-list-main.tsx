@@ -2,7 +2,7 @@ import Card from '../card/card';
 import Map from '../map/map';
 import SortingList from '../sorting-list/sorting-list';
 import Spinner from '../spinner/spinner';
-import { useAppSelector } from '../../hooks/useRedux';
+import { useAppSelector } from '../../hooks';
 import { useState, Fragment } from 'react';
 import { SortName } from '../../types';
 import { sortingValues } from '../../const';
