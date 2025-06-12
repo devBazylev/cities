@@ -1,9 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { City, OfferProps, SortName } from '../types';
-import { setCity, fetchOffers, setSorting, fetchUserStatus } from './action';
+import { City, OfferProps, SortName, User } from '../types';
+import { setCity, fetchOffers, setSorting, fetchUserStatus, loginUser } from './action';
 import { cities, CityLocation, sortingValues, AuthorizationStatus } from '../const';
-/* eslint-disable */
-// @ts-ignore
 
 type State = {
   city: City;
@@ -11,7 +9,7 @@ type State = {
   isOffersLoading: boolean;
   sorting: SortName;
   authorizationStatus: AuthorizationStatus;
-  user?: string;
+  user: User['email'];
 }
 
 const initialState: State = {
@@ -23,7 +21,7 @@ const initialState: State = {
   isOffersLoading: false,
   sorting: sortingValues[0],
   authorizationStatus: AuthorizationStatus.NoAuth,
-  user: undefined,
+  user: '',
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -53,5 +51,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchUserStatus.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.authorizationStatus = AuthorizationStatus.Auth;
     });
 });

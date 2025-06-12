@@ -5,15 +5,17 @@ import Favorites from '../../pages/favorites/favorites';
 import Error from '../../pages/error/error';
 import PrivateRoute from '../private-route/private-route';
 import { ScrollToTop } from '../../utils';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import history from '../../browser-history';
+import HistoryRouter from '../history-route/history-route';
 // eslint-disable-next-line no-console
 /* eslint-disable */
 // @ts-ignore
 
 function App(): JSX.Element {
   return (
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <ScrollToTop />
       <Routes>
         <Route path="/">
@@ -32,7 +34,7 @@ function App(): JSX.Element {
           <Route path="*" element={<Error />}/>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
