@@ -4,6 +4,7 @@ import { useAppSelector } from '../../hooks';
 
 function Nav(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const user = useAppSelector((state) => state.user);
 
   return (
     <nav className="header__nav">
@@ -12,7 +13,7 @@ function Nav(): JSX.Element {
           <li className="header__nav-item user">
             <Link to="/login" className="header__nav-link header__nav-link--profile">
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-              <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+              <span className="header__user-name user__name">{user}</span>
               <span className="header__favorite-count">3</span>
             </Link>
           </li>
