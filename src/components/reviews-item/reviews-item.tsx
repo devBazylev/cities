@@ -1,6 +1,6 @@
-import { ReviewProps } from '../../types';
+import { Comment } from '../../types';
 
-function ReviewsItem({user, rating, comment, date}: ReviewProps): JSX.Element {
+function ReviewsItem({user, rating, comment, date}: Comment): JSX.Element {
   const formatDate = (dateString: string): string =>{
     const dateRefactored = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };

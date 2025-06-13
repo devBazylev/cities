@@ -39,15 +39,30 @@ export type OfferProps = {
   location: Location;
 };
 
-export type ReviewProps = {
-  id: number;
-  comment: string;
-  date: string;
-  rating: number;
-  user: {
+export type FullOfferProps = OfferProps & {
+  title: string;
+  isFavorite: boolean;
+  bedrooms: number;
+  maxAdults: number;
+  goods: string[];
+  images: string[];
+  host: {
     name: string;
     avatarUrl: string;
-    isPro?: boolean;
+    isPro: boolean;
+  };
+};
+
+export type Comment = {
+  id: string | undefined;
+  comment: string;
+  rating: number;
+  date: string;
+  user: {
+    avatarUrl: string;
+    id: number;
+    isPro: boolean;
+    name: string;
   };
 };
 

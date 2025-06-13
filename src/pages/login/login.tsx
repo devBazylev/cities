@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import type { FormEvent } from 'react';
 import type { UserAuth } from '../../types';
 import { useAppDispatch } from '../../hooks';
-import { loginUser } from '../../store/action';
+import { loginUser } from '../../store/api-action';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();

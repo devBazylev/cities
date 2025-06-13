@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { reducer } from './reducer';
 import { createAPI } from '../services/api';
-import { fetchOffers, fetchUserStatus } from './action';
+import { fetchOffers, fetchUserStatus } from './api-action';
 import history from '../browser-history';
 
 export const api = createAPI();
