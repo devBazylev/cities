@@ -2,7 +2,7 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { CityName, OfferProps, SortName, User, UserAuth } from '../types';
 import type { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
-import { Token } from '../services/token';
+import { saveToken } from '../services/token';
 import { History } from 'history';
 
 interface ThunkExtraArg {
@@ -43,7 +43,7 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     const { data } = await api.post<User>(APIRoute.Login, { email, password });
     const { token } = data;
 
-    Token.save(token);
+    saveToken(token);
     history.push(AppRoute.Root);
 
     return email;

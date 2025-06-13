@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import { Token } from './token';
+import { getToken } from './token';
 
 // const BACKEND_URL = 'https://5c5bc9a6fa9d36c2.mokky.dev';
 // const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
@@ -14,7 +14,7 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-      const token = Token.get();
+      const token = getToken();
 
       if (token && config.headers) {
         config.headers['x-token'] = token;
