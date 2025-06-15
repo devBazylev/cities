@@ -1,11 +1,6 @@
 name: Publish
 
 on:
-  workflow_run:
-    workflows:
-      - Build
-    types:
-      - completed
   push:
     branches:
       - main
@@ -13,10 +8,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    # Запуск при успешном завершении workflow "Build" или при пуше в main
-    if: |
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
-      (github.event_name == 'push' && github.ref == 'refs/heads/main')
 
     steps:
       - name: Checkout
@@ -26,18 +17,12 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           name: actions_artifacts
-          workflow: ${{ github.event.workflow_run.workflow_id }}
+          workflow: ${{ github.event.workflow_id }}
 
       - name: Get PR number
         run: |
-          if [ "${{ github.event_name }}" = "workflow_run" ]; then
-            PR=$(jq --raw-output '.pull_requests[0].number' "$GITHUB_EVENT_PATH" 2>/dev/null || echo "")
-            echo "PR=$PR" >> $GITHUB_ENV
-            echo "BUILD_URL=${{ github.event.workflow_run.head_repository.html_url }}/actions/runs/${{ github.event.workflow_run.id }}" >> $GITHUB_ENV
-          elif [ "${{ github.event_name }}" = "push" ]; then
-            echo "PR=" >> $GITHUB_ENV
-            echo "BUILD_URL=${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_ENV
-          fi
+          echo "PR=$(cat env | grep "prev.event.number" | awk -F '=' '{print $2}')" >> $GITHUB_ENV
+          echo "BUILD_URL=$(echo ${{ github.repository }} | sed -r 's/\//\.github\.io\//g')" >> $GITHUB_ENV
 
       - name: Deploy build to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -47,13 +32,4 @@ jobs:
           git-config-name: "keksobot"
           git-config-email: "github+keksobot@htmlacademy.ru"
           target-folder: ${{ env.PR }}
-          commit-message: |
-            ✔️ Сборка #${{ env.PR || 'main' }}
-
-      - name: Comment PR
-        if: github.event_name == 'workflow_run'
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            Ваш пулреквест опубликован. Посмотреть можно [здесь](https://${{ env.BUILD_URL }}/${{ env.PR }}/)
-          pr_number: ${{ env.PR }}
+          commit-message: "✔️ Сборка #${{ env.PR }}"
