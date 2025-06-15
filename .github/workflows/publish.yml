@@ -11,6 +11,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
+    env:
+      PR: ${{ github.event.workflow_run.head_branch }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,10 +23,14 @@ jobs:
           name: actions_artifacts
           workflow: ${{ github.event.workflow_run.workflow_id }}
 
-      - name: Get PR number
+      - name: Get PR or branch number
         run: |
-          echo "PR=$(cat env | grep "prev.event.number" | awk -F '=' '{print $2}')" >> $GITHUB_ENV
-          echo "BUILD_URL=$(echo ${{ github.repository }} | sed -r 's/\//\.github\.io\//g')" >> $GITHUB_ENV
+          if [[ "${{ github.event.workflow_run.head_branch }}" == feature/* || "${{ github.event.workflow_run.head_branch }}" == hotfix/* ]]; then
+            echo "PR=PR-$(cat env | grep 'prev.event.number' | awk -F '=' '{print $2}')" >> $GITHUB_ENV
+          else
+            echo "PR=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
+          fi
+          echo "BUILD_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
 
       - name: Deploy build to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
