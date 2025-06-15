@@ -1,26 +1,26 @@
+name: Project check
+
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches: '*'
+      - main
 
-name: Project check
 jobs:
   check:
     name: Check
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - uses: actions/checkout@master
-      name: Checkout
+      - uses: actions/checkout@v3
+        with:
+          ref: main
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run checks
-      run: npm test && npm run lint
+      - name: Run checks
+        run: npm test && npm run lint
