@@ -2,7 +2,7 @@
   "name": "six-cities",
   "version": "14.0.0",
   "type": "module",
-  "homepage": "https://devbazylev.github.io/cities/",
+  "homepage": "https://devbazylev.github.io/cities",
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
