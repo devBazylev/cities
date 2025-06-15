@@ -8,33 +8,23 @@ on:
       - completed
 
 jobs:
-  publish:
+  comment:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
     env:
-      PR: ${{ github.event.workflow_run.head_branch }}
+      BUILD_URL: https://devBazylev.github.io/main
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Download build
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          name: actions_artifacts
-          workflow: ${{ github.event.workflow_run.workflow_id }}
-
-      - name: Get PR or branch number
+      - name: Get PR number via API
+        id: get_pr
         run: |
-          # Проверяем, является ли ветка PR
-          if [[ "${{ github.event.workflow_run.head_branch }}" == feature/* || "${{ github.event.workflow_run.head_branch }}" == hotfix/* ]]; then
-            # Предполагается, что у вас есть номер PR в файле или переменной
-            # Здесь нужно вставить ваш способ получения номера PR
-            echo "PR=123" >> $GITHUB_ENV  # Замените 123 на ваш способ получения номера PR
-          else
-            # Для ветки, а не PR, можно оставить ветку как есть или пропустить
-            echo "PR=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
-          fi
-          echo "BUILD_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
+          # Получение номера PR по ветке
+          PR_NUMBER=$(curl -s \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ github.event.workflow_run.head_branch }}" | \
+            jq '.[0].number')
+
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
 
       - name: Deploy build to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -43,15 +33,15 @@ jobs:
           clean: true
           git-config-name: "keksobot"
           git-config-email: "github+keksobot@htmlacademy.ru"
-          target-folder: ${{ env.PR }}
-          commit-message: "✔️ Сборка #${{ env.PR }}"
+          target-folder: ${{ steps.get_pr.outputs.PR_NUMBER }}
+          commit-message: "✔️ Сборка #${{ steps.get_pr.outputs.PR_NUMBER }}"
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
-            Ваш пулреквест опубликован. Посмотреть можно [здесь](https://${{ env.BUILD_URL }}/${{ env.PR }}/)
-          pr-number: ${{ env.PR }}
+            Ваш пулреквест опубликован. Посмотреть можно [здесь](https://${{ env.BUILD_URL }}/${{ steps.get_pr.outputs.PR_NUMBER }}/)
+          pr-number: ${{ steps.get_pr.outputs.PR_NUMBER }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           mode: upsert
           create-if-not-exists: true
