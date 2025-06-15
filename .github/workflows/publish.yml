@@ -25,9 +25,13 @@ jobs:
 
       - name: Get PR or branch number
         run: |
+          # Проверяем, является ли ветка PR
           if [[ "${{ github.event.workflow_run.head_branch }}" == feature/* || "${{ github.event.workflow_run.head_branch }}" == hotfix/* ]]; then
+            # Предполагается, что у вас есть номер PR в переменной или файле
+            # Например, если есть переменная или файл с номером PR, вставьте сюда
             echo "PR=PR-$(cat env | grep 'prev.event.number' | awk -F '=' '{print $2}')" >> $GITHUB_ENV
           else
+            # Для ветки, а не PR, можно оставить комментарий в ветке или пропустить
             echo "PR=${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
           fi
           echo "BUILD_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.workflow_run.head_branch }}" >> $GITHUB_ENV
