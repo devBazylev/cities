@@ -1,32 +1,30 @@
-name: Publish
-
-on:
-  workflow_run:
-    workflows:
-      - Build
-    types:
-      - completed
-
 jobs:
-  comment:
+  deploy:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
-    env:
-      BUILD_URL: https://devBazylev.github.io/main
     steps:
-      - name: Get PR number via API
-        id: get_pr
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
         run: |
-          # Получение номера PR по ветке
-          PR_NUMBER=$(curl -s \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ github.event.workflow_run.head_branch }}" | \
-            jq '.[0].number')
+          # Например, для npm
+          npm install
 
-          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+      - name: Build project
+        run: |
+          # Запуск сборки
+          npm run build
 
-      - name: Deploy build to Github Pages
+      - name: Verify build output
+        run: |
+          if [ -d "dist" ]; then
+            echo "Build output exists."
+          else
+            echo "Build output does not exist!"
+            exit 1
+          fi
+
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
@@ -35,13 +33,3 @@ jobs:
           git-config-email: "github+keksobot@htmlacademy.ru"
           target-folder: ${{ steps.get_pr.outputs.PR_NUMBER }}
           commit-message: "✔️ Сборка #${{ steps.get_pr.outputs.PR_NUMBER }}"
-
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v3
-        with:
-          message: |
-            Ваш пулреквест опубликован. Посмотреть можно [здесь](https://${{ env.BUILD_URL }}/${{ steps.get_pr.outputs.PR_NUMBER }}/)
-          pr-number: ${{ steps.get_pr.outputs.PR_NUMBER }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          mode: upsert
-          create-if-not-exists: true
