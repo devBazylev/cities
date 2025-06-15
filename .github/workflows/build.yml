@@ -32,8 +32,9 @@ jobs:
           mkdir actions_artifacts
           echo "prev.event.number=${{ github.event.number }}" > actions_artifacts/env
           mv dist actions_artifacts
+
       - name: Save build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: actions_artifacts
           path: actions_artifacts

@@ -16,8 +16,8 @@ jobs:
       with:
         node-version: '18'
 
-    - uses: actions/checkout@main
-      name: Checkout
+    - name: Checkout
+      uses: actions/checkout@v3
 
     - name: Install dependencies
       run: npm install

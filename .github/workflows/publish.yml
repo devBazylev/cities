@@ -13,10 +13,10 @@ jobs:
     if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v3
 
       - name: Download build
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v3
         with:
           name: actions_artifacts
           workflow: ${{ github.event.workflow_run.workflow_id }}
@@ -37,7 +37,7 @@ jobs:
           commit-message: "✔️ Сборка #${{ env.PR }}"
 
       - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
             Ваш пулреквест опубликован. Посмотреть можно [здесь](https://${{ env.BUILD_URL }}/${{ env.PR }}/)
