@@ -4,8 +4,8 @@
   "type": "module",
   "homepage": "https://devbazylev.github.io/cities",
   "scripts": {
-    "start": "vite --open",
-    "build": "tsc && vite build",
+    "start": "cross-env VITE_BASE_PATH=/ vite --open",
+    "build": "cross-env VITE_BASE_PATH=/cities/ tsc && cross-env VITE_BASE_PATH=/cities/ vite build",
     "lint": "eslint src --ext ts,tsx",
     "preview": "vite preview",
     "test": "vitest --passWithNoTests",
@@ -40,6 +40,7 @@
     "@typescript-eslint/parser": "6.7.4",
     "@vitejs/plugin-react": "4.1.0",
     "axios-mock-adapter": "1.22.0",
+    "cross-env": "^7.0.3",
     "eslint": "8.51.0",
     "eslint-config-htmlacademy": "9.1.1",
     "eslint-plugin-react-hooks": "4.6.0",
