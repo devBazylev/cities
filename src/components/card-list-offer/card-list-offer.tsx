@@ -7,7 +7,8 @@ import Spinner from '../spinner/spinner';
 import { useState, useEffect, Fragment } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useParams } from 'react-router-dom';
-import { fetchOffer, fetchNearbyOffers, fetchComments } from '../../store/api-action';
+import { CommentAuth } from '../../types';
+import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../../store/api-action';
 
 function CardListOffer(): JSX.Element | null {
   const PROPERTY = 'property';
@@ -53,6 +54,10 @@ function CardListOffer(): JSX.Element | null {
   const limitMarkers = nearbyOffers.map(({ id: nearbyId, location: nearbyLocation, }) => ({ id: nearbyId, ...nearbyLocation }));
   limitMarkers.push({ id, latitude: location.latitude, longitude: location.longitude, zoom: location.zoom });
   const limitImages = (images.length > 6) ? images.slice(0, 6) : images;
+
+  const onFormSubmit = (formData: Omit<CommentAuth, 'id'>) => {
+    dispatch(postComment({ id, ...formData }));
+  };
 
   return (
     <Fragment>
@@ -128,7 +133,7 @@ function CardListOffer(): JSX.Element | null {
                   <ReviewsItem key={comment.id} {...comment} />
                 ))}
               </ReviewsList>
-              {authorizationStatus && <FormOffer />}
+              {authorizationStatus && <FormOffer onSubmit={onFormSubmit} />}
             </section>
           </div>
         </div>

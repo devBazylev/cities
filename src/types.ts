@@ -77,6 +77,8 @@ export type User = {
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
 
+export type CommentAuth = Pick<Comment, 'comment' | 'rating'> & Pick<FullOfferProps, 'id'>;
+
 export type CardListProps = {
   cards: OfferProps[];
 };

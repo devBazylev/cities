@@ -1,11 +1,16 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import type { CityName, OfferProps, SortName, User, UserAuth, FullOfferProps, Comment } from '../types';
+import type { CityName, OfferProps, SortName, User, UserAuth, FullOfferProps, Comment, CommentAuth } from '../types';
 import type { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
 import { saveToken } from '../services/token';
 import { History } from 'history';
 
 interface ThunkExtraArg {
+  api: AxiosInstance;
+  history: History;
+}
+
+type Extra = {
   api: AxiosInstance;
   history: History;
 }
@@ -19,6 +24,7 @@ export const Action = {
   FETCH_USER_STATUS: 'user/fetch-status',
   FETCH_NEARBY_OFFERS: 'offers/fetch-nearby',
   FETCH_COMMENTS: 'offer/fetch-comments',
+  POST_COMMENT: 'offer/post-comment',
 };
 
 export const setCity = createAction<CityName>(Action.SET_CITY);
@@ -77,6 +83,16 @@ export const fetchComments = createAsyncThunk<Comment[], FullOfferProps['id'], {
   async (id, { extra }) => {
     const { api } = extra;
     const { data } = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
+
+    return data;
+  }
+);
+
+export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Extra }>(
+  Action.POST_COMMENT,
+  async ({ id, comment, rating }, { extra }) => {
+    const { api } = extra;
+    const { data } = await api.post<Comment[]>(`${APIRoute.Comments}/${id}`, { comment, rating });
 
     return data;
   }

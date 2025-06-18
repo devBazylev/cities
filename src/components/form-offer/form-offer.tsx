@@ -1,8 +1,13 @@
 import { ReactEventHandler, useState, Fragment, useRef, FormEvent } from 'react';
+import type { CommentAuth } from '../../types';
 
 type ChangeHandlerProps = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
-function FormOffer(): JSX.Element {
+type FormProps = {
+  onSubmit: (formData: Omit<CommentAuth, 'id'>) => void;
+}
+
+function FormOffer({ onSubmit }: FormProps): JSX.Element {
   const inputRef = useRef<HTMLFormElement>(null);
   const [review, setReview] = useState({ rating: 0, review: '' });
 
@@ -15,34 +20,6 @@ function FormOffer(): JSX.Element {
     }
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
-    evt.preventDefault();
-
-    (async () => {
-      try {
-        if (inputRef.current) {
-          const formData = new FormData(inputRef.current);
-          const response = await fetch('https://echo.htmlacademy.ru', {
-            method: 'POST',
-            body: formData,
-          });
-
-          if (response.ok) {
-            // eslint-disable-next-line no-alert
-            alert('ACHTUNG! The review has been published');
-            setReview({ rating: 0, review: '' });
-          } else {
-            // eslint-disable-next-line no-alert
-            alert('Error submitting the review. Please try again');
-          }
-        }
-      } catch (error) {
-        // eslint-disable-next-line no-alert
-        alert('An error occurred during submission. Please try again later');
-      }
-    })();
-  };
-
   const stars = [
     { value: 5, label: 'perfect' },
     { value: 4, label: 'good' },
@@ -51,8 +28,17 @@ function FormOffer(): JSX.Element {
     { value: 1, label: 'terribly' },
   ];
 
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    onSubmit({
+      comment: review.review,
+      rating: review.rating,
+    });
+  };
+
   return (
-    <form className="reviews__form form" method="post" ref={inputRef} onSubmit={handleSubmit}>
+    <form className="reviews__form form" method="post" ref={inputRef} onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {stars.map(({value, label}) =>

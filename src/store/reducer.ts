@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { City, OfferProps, SortName, User, FullOfferProps, Comment } from '../types';
-import { setCity, fetchOffers, fetchOffer, setSorting, fetchUserStatus, loginUser, fetchNearbyOffers, fetchComments } from './api-action';
+import { setCity, fetchOffers, fetchOffer, setSorting, fetchUserStatus, loginUser, fetchNearbyOffers, fetchComments, postComment } from './api-action';
 import { cities, CityLocation, sortingValues, AuthorizationStatus } from '../const';
 
 type State = {
@@ -78,6 +78,9 @@ export const reducer = createReducer(initialState, (builder) => {
       state.nearbyOffers = action.payload;
     })
     .addCase(fetchComments.fulfilled, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(postComment.fulfilled, (state, action) => {
       state.comments = action.payload;
     });
 });
