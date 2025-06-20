@@ -2,6 +2,7 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { CityName, OfferProps, SortName, User, UserAuth, FullOfferProps, Comment, CommentAuth } from '../types';
 import type { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
+import { joinPaths } from '../utils';
 import { saveToken } from '../services/token';
 import { History } from 'history';
 
@@ -65,7 +66,8 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     const { token } = data;
 
     saveToken(token);
-    history.push(`${import.meta.env.BASE_URL || ''}${AppRoute.Root}`);
+    const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+    history.push(path);
 
     return email;
   }

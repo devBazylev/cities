@@ -4,7 +4,7 @@
   "type": "module",
   "homepage": "https://devbazylev.github.io/cities",
   "scripts": {
-    "start": "cross-env VITE_BASE_PATH=/cities/ vite --open",
+    "start": "vite --open",
     "build": "cross-env VITE_BASE_PATH=/cities/ tsc && cross-env VITE_BASE_PATH=/cities/ vite build",
     "lint": "eslint src --ext ts,tsx",
     "preview": "vite preview",

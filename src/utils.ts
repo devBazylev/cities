@@ -11,6 +11,14 @@ function ScrollToTop() {
   return null;
 }
 
+const joinPaths = (...parts: string[]) => parts.map((part, index) => {
+  if (index === 0) {
+    return part.replace(/\/+$/, '');
+  } else {
+    return part.replace(/^\/+/, '');
+  }
+}).join('/');
+
 const generateCardId = () => {
   let key = 0;
   return () => {
@@ -41,6 +49,7 @@ const getReviewId = generateReviewId();
 
 export {
   ScrollToTop,
+  joinPaths,
   getCardId,
   getCityId,
   getReviewId,
