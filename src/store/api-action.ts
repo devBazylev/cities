@@ -35,6 +35,7 @@ export const fetchOffers = createAsyncThunk<OfferProps[], undefined, { extra: Th
   async (_, { extra }) => {
     const { api } = extra;
     const { data } = await api.get<OfferProps[]>(APIRoute.Offers);
+
     return data;
   }
 );
@@ -52,6 +53,7 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkE
   async (_, { extra }) => {
     const { api } = extra;
     const { data } = await api.get<User>(APIRoute.Login);
+
     return data;
   }
 );
@@ -63,7 +65,7 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     const { token } = data;
 
     saveToken(token);
-    history.push(AppRoute.Root);
+    history.push(`${import.meta.env.BASE_URL || ''}${AppRoute.Root}`);
 
     return email;
   }
@@ -77,7 +79,6 @@ export const fetchNearbyOffers = createAsyncThunk<FullOfferProps[], FullOfferPro
     return data;
   }
 );
-
 export const fetchComments = createAsyncThunk<Comment[], FullOfferProps['id'], { extra: ThunkExtraArg }>(
   Action.FETCH_COMMENTS,
   async (id, { extra }) => {
@@ -87,7 +88,6 @@ export const fetchComments = createAsyncThunk<Comment[], FullOfferProps['id'], {
     return data;
   }
 );
-
 export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Extra }>(
   Action.POST_COMMENT,
   async ({ id, comment, rating }, { extra }) => {
