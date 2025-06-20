@@ -15,7 +15,7 @@ import HistoryRouter from '../history-route/history-route';
 
 function App(): JSX.Element {
   return (
-    <HistoryRouter history={history} basename={import.meta.env.BASE_URL} >
+    <HistoryRouter history={history} basename={import.meta.env.VITE_BASE_URL} >
       <ScrollToTop />
       <Routes>
         <Route path="/">
