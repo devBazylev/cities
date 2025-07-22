@@ -6,12 +6,14 @@ import { useAppSelector } from '../../hooks';
 import { useState, Fragment } from 'react';
 import { SortName } from '../../types';
 import { sortingValues } from '../../const';
+import { getCity } from '../../store/site-process/selectors';
+import { getIsOffersLoading, getOffers } from '../../store/site-data/selectors';
 
 function CardListMain(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const [sortValue, setSortValue] = useState<SortName>('Popular');
-  const activeCity = useAppSelector((state) => state.city);
-  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+  const activeCity = useAppSelector(getCity);
+  const isOffersLoading = useAppSelector(getIsOffersLoading);
 
   const handleMouseMove = (id: number) => {
     setActiveOffer(id);
@@ -21,7 +23,7 @@ function CardListMain(): JSX.Element {
     setActiveOffer(null);
   };
 
-  let cards = useAppSelector((state) => state.offers).filter((card) => card.city.name === activeCity.name);
+  let cards = useAppSelector(getOffers).filter((card) => card.city.name === activeCity.name);
   const cardsByPriceLowToHigh = cards.slice().sort((a, b) => a.price - b.price);
   const cardsByPriceHighToLow = cards.slice().sort((a, b) => b.price - a.price);
   const cardsByRated = cards.slice().sort((a, b) => b.rating - a.rating);

@@ -4,10 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks';
 import { setCity } from '../../store/api-action';
 import { cities } from '../../const';
+import { getCity } from '../../store/site-process/selectors';
 
 function CitiesList (): JSX.Element {
   const dispatch = useDispatch();
-  const activeCity = useAppSelector((state) => state.city);
+  const activeCity = useAppSelector(getCity);
 
   const handleClick = (name: CityName) => {
     dispatch(setCity(name));

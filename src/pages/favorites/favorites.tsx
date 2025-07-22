@@ -8,12 +8,13 @@ import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import { useAppSelector } from '../../hooks';
 import Card from '../../components/card/card';
 import { useState } from 'react';
+import { getOffers } from '../../store/site-data/selectors';
 
 function Favorites(): JSX.Element {
   /* eslint-disable */
   // @ts-ignore
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const cards = useAppSelector((state) => state.offers);
+  const cards = useAppSelector(getOffers);
   const cardsMarked = cards.filter((card) => card.isMarked);
   const cities = Array.from(new Set(cardsMarked.map((elem) => elem.city.name)));
   const WRAP_NAME = 'favorites';

@@ -8,6 +8,12 @@ export const sortingValues = ['Popular', 'Price: low to high', 'Price: high to l
 const URL_MARKER_DEFAULT = markerIcon;
 const URL_MARKER_CURRENT = activeMarkerIcon;
 
+export enum StoreSlice {
+  SiteData = 'SITE_DATA',
+  SiteProcess = 'SITE_PROCESS',
+  UserProcess = 'USER_PROCESS',
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

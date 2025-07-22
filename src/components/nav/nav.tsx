@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { Span } from './style';
+import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
 
 function Nav(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const user = useAppSelector((state) => state.user);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const user = useAppSelector(getUser);
 
   return (
     <nav className="header__nav">

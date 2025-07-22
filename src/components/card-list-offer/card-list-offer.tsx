@@ -9,6 +9,8 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { CommentAuth } from '../../types';
 import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../../store/api-action';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getIsOffersLoading, getOffer, getNearbyOffers, getComments } from '../../store/site-data/selectors';
 
 function CardListOffer(): JSX.Element | null {
   const PROPERTY = 'property';
@@ -16,11 +18,11 @@ function CardListOffer(): JSX.Element | null {
 
   const params = useParams();
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOfferLoading = useAppSelector((state) => state.isOfferLoading);
-  const offer = useAppSelector((state) => state.offer);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
-  const comments = useAppSelector((state) => state.comments);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isOfferLoading = useAppSelector(getIsOffersLoading);
+  const offer = useAppSelector(getOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const comments = useAppSelector(getComments);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
   const handleMouseMove = (id: number) => {

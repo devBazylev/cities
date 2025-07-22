@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { cities, sortingValues } from './const';
-import { store } from './store';
+import { cities, sortingValues, AuthorizationStatus } from './const';
+import { store } from './store/store';
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -92,3 +92,22 @@ export type OfferForm = {
 };
 
 export type SortName = typeof sortingValues[number];
+
+export type SiteData = {
+    offers: OfferProps[];
+    isOffersLoading: boolean;
+    offer: OfferProps | null;
+    isOfferLoading: boolean;
+    nearbyOffers: OfferProps[];
+    comments: Comment[];
+};
+
+export type SiteProcess = {
+    city: City;
+    sorting: SortName;
+};
+
+export type UserProcess = {
+    authorizationStatus: AuthorizationStatus;
+    user: User['email'];
+}
