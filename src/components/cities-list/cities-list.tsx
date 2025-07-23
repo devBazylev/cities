@@ -2,7 +2,7 @@ import City from '../city/city';
 import { CityName } from '../../types';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks';
-import { setCity } from '../../store/api-action';
+import { setCity } from '../../store/site-process/site-process';
 import { cities } from '../../const';
 import { getCity } from '../../store/site-process/selectors';
 
