@@ -96,7 +96,7 @@ export type SortName = typeof sortingValues[number];
 export type SiteData = {
     offers: OfferProps[];
     isOffersLoading: boolean;
-    offer: OfferProps | null;
+    offer: FullOfferProps | null;
     isOfferLoading: boolean;
     nearbyOffers: OfferProps[];
     comments: Comment[];
