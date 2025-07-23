@@ -40,15 +40,15 @@ export const fetchOffers = createAsyncThunk<OfferProps[], undefined, { extra: Th
     return data;
   }
 );
-export const fetchOffer = createAsyncThunk<FullOfferProps, FullOfferProps['id'], { extra: ThunkExtraArg }>(
-  Action.FETCH_OFFER,
-  async (id, { extra }) => {
-    const { api } = extra;
-    const { data } = await api.get<FullOfferProps>(`${APIRoute.Offers}/${id}`);
+// export const fetchOffer = createAsyncThunk<FullOfferProps, FullOfferProps['id'], { extra: ThunkExtraArg }>(
+//   Action.FETCH_OFFER,
+//   async (id, { extra }) => {
+//     const { api } = extra;
+//     const { data } = await api.get<FullOfferProps>(`${APIRoute.Offers}/${id}`);
 
-    return data;
-  }
-);
+//     return data;
+//   }
+// );
 export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
@@ -97,5 +97,32 @@ export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Ext
     const { data } = await api.post<Comment[]>(`${APIRoute.Comments}/${id}`, { comment, rating });
 
     return data;
+  }
+);
+
+function convertToFullOfferProps(data: OfferProps): FullOfferProps {
+  return {
+    ...data,
+    title: 'Заголовок',
+    isFavorite: false,
+    bedrooms: 1,
+    maxAdults: 2,
+    goods: [],
+    images: [],
+    host: {
+      name: 'Имя хоста',
+      avatarUrl: '',
+      isPro: false,
+    },
+  };
+}
+
+export const fetchOffer = createAsyncThunk<FullOfferProps, number, { extra: ThunkExtraArg }>(
+  Action.FETCH_OFFER,
+  async (id, { extra }) => {
+    const { api } = extra;
+    const { data } = await api.get<OfferProps>(`${APIRoute.Offers}/${id}`);
+
+    return convertToFullOfferProps(data);
   }
 );
