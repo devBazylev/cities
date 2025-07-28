@@ -26,7 +26,7 @@ const Bookmark = ({ id, isActive, place = 'place-card' }: BookmarkProps) => {
       }`}
       type="button"
     >
-      <svg className="place-card__bookmark-icon" width={place === 'property' ? 31 : 18} height={place === 'property' ? 33 : 19}>
+      <svg className={`${place}__bookmark-icon`} width={place === 'property' ? 31 : 18} height={place === 'property' ? 33 : 19}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">{isActive ? 'From' : 'To'} bookmarks</span>
