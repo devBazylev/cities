@@ -3,8 +3,17 @@ import Nav from '../../components/nav/nav';
 import CardListMain from '../../components/card-list-main/card-list-main';
 import { HelmetProvider } from 'react-helmet-async';
 import CitiesList from '../../components/cities-list/cities-list';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { fetchFavoriteOffers } from '../../store/api-action';
 
 function Main(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, [dispatch]);
+
   return (
     <div className="page page--gray page--main">
       <HelmetProvider >

@@ -3,10 +3,12 @@ import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { Span } from './style';
 import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
+import { getFavoriteOffers } from '../../store/site-data/selectors';
 
 function Nav(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const user = useAppSelector(getUser);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
   return (
     <nav className="header__nav">
@@ -16,7 +18,7 @@ function Nav(): JSX.Element {
             <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
               <span className="header__user-name user__name">{user}</span>
-              <Span>3</Span>
+              <Span>{favoriteOffers.length}</Span>
             </Link>
           </li>
         )}
