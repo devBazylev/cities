@@ -1,12 +1,14 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { OfferProps } from '../../types';
 import { AppRoute } from '../../const';
+import Bookmark from '../bookmark/bookmark';
 
 type CardProps = OfferProps & {
   wrapName?: 'cities' | 'near-places' | 'favorites';
 };
 
-function Card({id, previewImage, isPremium, price, isMarked, rating, description, type, onMouseMove, onMouseLeave, wrapName = 'cities'}: CardProps): JSX.Element {
+const Card = ({id, previewImage, isPremium, price, isFavorite, rating, description, type, onMouseMove, onMouseLeave, wrapName = 'cities'}: CardProps): JSX.Element => {
   let articleClassName = '';
 
   switch (wrapName) {
@@ -39,12 +41,7 @@ function Card({id, previewImage, isPremium, price, isMarked, rating, description
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isMarked ? 'place-card__bookmark-button--active' : ''}`} type="button">
-            <svg className="place-card__bookmark-icon" width={18} height={19}>
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">{isMarked ? 'In bookmarks' : 'To bookmarks'}</span>
-          </button>
+          <Bookmark id={id} isActive={isFavorite} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -61,6 +58,8 @@ function Card({id, previewImage, isPremium, price, isMarked, rating, description
       </div>
     </article>
   );
-}
+};
 
-export default Card;
+const MemoizedCard = memo(Card, (prevProps, nextProps) => prevProps.isFavorite === nextProps.isFavorite);
+
+export default MemoizedCard;

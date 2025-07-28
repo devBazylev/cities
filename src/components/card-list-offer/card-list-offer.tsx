@@ -4,6 +4,7 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import ReviewsItem from '../../components/reviews-item/reviews-item';
 import Map from '../map/map';
 import Spinner from '../spinner/spinner';
+import Bookmark from '../bookmark/bookmark';
 import { useState, useEffect, Fragment } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useParams } from 'react-router-dom';
@@ -51,7 +52,7 @@ function CardListOffer(): JSX.Element | null {
     return <Spinner />;
   }
 
-  const { id, images, isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description, city, location } = offer;
+  const { id, images, isPremium, isFavorite, title, rating, type, bedrooms, maxAdults, price, goods, host, description, city, location } = offer;
 
   const limitMarkers = nearbyOffers.map(({ id: nearbyId, location: nearbyLocation, }) => ({ id: nearbyId, ...nearbyLocation }));
   limitMarkers.push({ id, latitude: location.latitude, longitude: location.longitude, zoom: location.zoom });
@@ -82,10 +83,7 @@ function CardListOffer(): JSX.Element | null {
             )}
             <div className="property__name-wrapper">
               <h1 className="property__name">{title}</h1>
-              <button className="property__bookmark-button button" type="button">
-                <svg className="property__bookmark-icon" width={31} height={33}><use xlinkHref="#icon-bookmark" /></svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>
+              <Bookmark id={id} isActive={isFavorite} place="property" />
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">

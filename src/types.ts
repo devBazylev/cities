@@ -37,6 +37,7 @@ export type OfferProps = {
   onMouseMove?: () => void;
   onMouseLeave?: () => void;
   location: Location;
+  isFavorite: boolean;
 };
 
 export type FullOfferProps = OfferProps & {
@@ -79,6 +80,8 @@ export type UserAuth = Pick<User, 'email'> & { password: string };
 
 export type CommentAuth = Pick<Comment, 'comment' | 'rating'> & Pick<FullOfferProps, 'id'>;
 
+export type FavoriteAuth = Pick<FullOfferProps, 'id'> & { status: 1 | 0 };
+
 export type CardListProps = {
   cards: OfferProps[];
 };
@@ -100,6 +103,8 @@ export type SiteData = {
     isOfferLoading: boolean;
     nearbyOffers: OfferProps[];
     comments: Comment[];
+    favoriteOffers: OfferProps[];
+    isFavoriteOffersLoading: boolean;
 };
 
 export type SiteProcess = {

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { SiteData } from '../../types';
 import { StoreSlice } from '../../const';
-import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../api-action';
+import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment, fetchFavoriteOffers, postFavorite } from '../api-action';
 
 const initialState: SiteData = {
   offers: [],
@@ -11,6 +11,8 @@ const initialState: SiteData = {
   isOfferLoading: false,
   nearbyOffers: [],
   comments: [],
+  favoriteOffers: [],
+  isFavoriteOffersLoading: false,
 };
 
 export const siteData = createSlice({
@@ -44,6 +46,42 @@ export const siteData = createSlice({
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.comments = action.payload;
+      })
+      .addCase(fetchFavoriteOffers.pending, (state) => {
+        state.isFavoriteOffersLoading = true;
+      })
+      .addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
+        state.favoriteOffers = action.payload;
+        state.isFavoriteOffersLoading = false;
+      })
+      .addCase(fetchFavoriteOffers.rejected, (state) => {
+        state.isFavoriteOffersLoading = false;
+      })
+      .addCase(postFavorite.fulfilled, (state, action) => {
+        const updatedOffer = action.payload;
+        state.offers = state.offers.map((offer) => offer.id === updatedOffer.id ? updatedOffer : offer);
+
+        if (state.offer && state.offer.id === updatedOffer.id) {
+          // Обновляем только поля, которые есть в OfferProps
+          state.offer = {
+            ...state.offer,
+            isFavorite: updatedOffer.isFavorite,
+            price: updatedOffer.price,
+            rating: updatedOffer.rating,
+            isPremium: updatedOffer.isPremium,
+            previewImage: updatedOffer.previewImage,
+            description: updatedOffer.description,
+            type: updatedOffer.type,
+            city: updatedOffer.city,
+            location: updatedOffer.location,
+          };
+        }
+
+        if (updatedOffer.isFavorite) {
+          state.favoriteOffers = state.favoriteOffers.concat(updatedOffer);
+        } else {
+          state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== updatedOffer.id);
+        }
       });
   }
 });

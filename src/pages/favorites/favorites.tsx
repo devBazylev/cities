@@ -3,29 +3,41 @@ import Nav from '../../components/nav/nav';
 import Footer from '../../components/footer/footer';
 import { HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { getCityId } from '../../utils';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import Card from '../../components/card/card';
-import { useState } from 'react';
-import { getOffers } from '../../store/site-data/selectors';
+import Spinner from '../../components/spinner/spinner';
+import { useEffect } from 'react';
+import { getFavoriteOffers, getIsFavoriteOffersLoading } from '../../store/site-data/selectors';
+import { fetchFavoriteOffers } from '../../store/api-action';
+import { OfferProps } from '../../types';
 
 function Favorites(): JSX.Element {
-  /* eslint-disable */
-  // @ts-ignore
-  const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const cards = useAppSelector(getOffers);
-  const cardsMarked = cards.filter((card) => card.isMarked);
-  const cities = Array.from(new Set(cardsMarked.map((elem) => elem.city.name)));
-  const WRAP_NAME = 'favorites';
+  const dispatch = useAppDispatch();
+  const isFavoriteOffersLoading = useAppSelector(getIsFavoriteOffersLoading);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
-  const handleMouseMove = (id: number) => {
-    setActiveOffer(id);
-  };
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, [dispatch]);
 
-  const handleMouseLeave = () => {
-    setActiveOffer(null);
-  };
+  const groupedOffersByCity = favoriteOffers.reduce<{ [key: string ]: OfferProps[] }>((acc, curr) => {
+    if (curr.isFavorite) {
+      const city = curr.city.name;
+
+      if (!(city in acc)) {
+        acc[city] = [];
+      }
+
+      acc[city].push(curr);
+    }
+
+    return acc;
+  }, {});
+
+  if (isFavoriteOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="page">
@@ -35,14 +47,14 @@ function Favorites(): JSX.Element {
       <Header>
         <Nav />
       </Header>
-      {cardsMarked.length > 0 ? (
+      {favoriteOffers.length > 0 ? (
         <main className="page__main page__main--favorites">
           <div className="page__favorites-container container">
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                {cities?.map((city) => (
-                  <li className="favorites__locations-items" key={getCityId()}>
+                {Object.entries(groupedOffersByCity).map(([city, groupedOffers]) => (
+                  <li className="favorites__locations-items" key={city}>
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
                         <Link className="locations__item-link" to="#">
@@ -51,9 +63,7 @@ function Favorites(): JSX.Element {
                       </div>
                     </div>
                     <div className="favorites__places">
-                      {cardsMarked.filter((card) => city === card.city.name).map((card) => (
-                        <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} wrapName={WRAP_NAME} />
-                      ))}
+                      {groupedOffers.map((offer) => <Card key={offer.id} {...offer} wrapName="favorites" />)}
                     </div>
                   </li>
                 ))}

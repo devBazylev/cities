@@ -26,6 +26,8 @@ export const Action = {
   FETCH_NEARBY_OFFERS: 'offers/fetch-nearby',
   FETCH_COMMENTS: 'offer/fetch-comments',
   POST_COMMENT: 'offer/post-comment',
+  FETCH_FAVORITE_OFFERS: 'offers/fetch-favorite',
+  POST_FAVORITE: 'offer/post-favorite',
 };
 
 export const setCity = createAction<CityName>(Action.SET_CITY);
@@ -40,15 +42,6 @@ export const fetchOffers = createAsyncThunk<OfferProps[], undefined, { extra: Th
     return data;
   }
 );
-// export const fetchOffer = createAsyncThunk<FullOfferProps, FullOfferProps['id'], { extra: ThunkExtraArg }>(
-//   Action.FETCH_OFFER,
-//   async (id, { extra }) => {
-//     const { api } = extra;
-//     const { data } = await api.get<FullOfferProps>(`${APIRoute.Offers}/${id}`);
-
-//     return data;
-//   }
-// );
 export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_USER_STATUS,
   async (_, { extra }) => {
@@ -97,6 +90,37 @@ export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Ext
     const { data } = await api.post<Comment[]>(`${APIRoute.Comments}/${id}`, { comment, rating });
 
     return data;
+  }
+);
+
+export const fetchFavoriteOffers = createAsyncThunk<OfferProps[], undefined, { extra: Extra }>(
+  Action.FETCH_FAVORITE_OFFERS,
+  async (_, { extra }) => {
+    const { api } = extra;
+    const { data } = await api.get<OfferProps[]>(APIRoute.Favorite);
+
+    return data;
+  }
+);
+
+export const postFavorite = createAsyncThunk<OfferProps, { id: number; status: 1 | 0 }, { extra: Extra }>(
+  Action.POST_FAVORITE,
+  async ({ id, status }, { extra }) => {
+    const { api, history } = extra;
+
+    try {
+      const { data } = await api.post<OfferProps>(`${APIRoute.Favorite}/${id}/${status}`);
+
+      return data;
+    } catch (error) {
+      const axiosError = error as { response?: { status: number } };
+
+      if (axiosError.response?.status === 401) {
+        history.push(AppRoute.Login);
+      }
+
+      return Promise.reject(error);
+    }
   }
 );
 
