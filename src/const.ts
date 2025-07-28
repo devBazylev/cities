@@ -70,4 +70,11 @@ export const CityLocation: { [key in CityName]: Location } = {
   },
 };
 
+export const Comprator = {
+  'Popular': () => 0,
+  'Price: low to high': (a: { price: number }, b: { price: number }) => a.price - b.price,
+  'Price: high to low': (a: { price: number }, b: { price: number }) => b.price - a.price,
+  'Top rated first': (a: { rating: number }, b: { rating: number }) => b.rating - a.rating,
+} as const;
+
 export { URL_MARKER_DEFAULT, URL_MARKER_CURRENT };

@@ -2,18 +2,20 @@ import Card from '../card/card';
 import Map from '../map/map';
 import SortingList from '../sorting-list/sorting-list';
 import Spinner from '../spinner/spinner';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useState, Fragment } from 'react';
 import { SortName } from '../../types';
-import { sortingValues } from '../../const';
-import { getCity } from '../../store/site-process/selectors';
-import { getIsOffersLoading, getOffers } from '../../store/site-data/selectors';
+import { getCity, getSorting } from '../../store/site-process/selectors';
+import { getIsOffersLoading, selectOffers } from '../../store/site-data/selectors';
+import { setSorting } from '../../store/site-process/site-process';
 
 function CardListMain(): JSX.Element {
+  const dispatch = useAppDispatch();
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const [sortValue, setSortValue] = useState<SortName>('Popular');
   const activeCity = useAppSelector(getCity);
+  const sortValue = useAppSelector(getSorting);
   const isOffersLoading = useAppSelector(getIsOffersLoading);
+  const cards = useAppSelector(selectOffers);
 
   const handleMouseMove = (id: number) => {
     setActiveOffer(id);
@@ -23,21 +25,9 @@ function CardListMain(): JSX.Element {
     setActiveOffer(null);
   };
 
-  let cards = useAppSelector(getOffers).filter((card) => card.city.name === activeCity.name);
-  const cardsByPriceLowToHigh = cards.slice().sort((a, b) => a.price - b.price);
-  const cardsByPriceHighToLow = cards.slice().sort((a, b) => b.price - a.price);
-  const cardsByRated = cards.slice().sort((a, b) => b.rating - a.rating);
-
-  switch(sortValue) {
-    case sortingValues[1]: cards = cardsByPriceLowToHigh;
-      break;
-    case sortingValues[2]: cards = cardsByPriceHighToLow;
-      break;
-    case sortingValues[3]: cards = cardsByRated;
-      break;
-    default:
-      break;
-  }
+  const handleSortClick = (value: SortName) => {
+    dispatch(setSorting(value));
+  };
 
   if (isOffersLoading) {
     return <Spinner />;
@@ -48,7 +38,7 @@ function CardListMain(): JSX.Element {
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{cards.length} places to stay in {activeCity.name}</b>
-        <SortingList sortValue={sortValue} onSortClick={setSortValue} />
+        <SortingList sortValue={sortValue} onSortClick={handleSortClick} />
         <div className="cities__places-list places__list tabs__content">
           {cards?.map((card) => (
             <Card key={card.id} {...card} onMouseMove={() => handleMouseMove(card.id)} onMouseLeave={handleMouseLeave} />
