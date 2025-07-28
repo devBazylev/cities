@@ -60,6 +60,7 @@ export const siteData = createSlice({
       .addCase(postFavorite.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
         state.offers = state.offers.map((offer) => offer.id === updatedOffer.id ? updatedOffer : offer);
+        state.nearbyOffers = state.nearbyOffers.map((offer) => offer.id === updatedOffer.id ? updatedOffer : offer);
 
         if (state.offer && state.offer.id === updatedOffer.id) {
           // Обновляем только поля, которые есть в OfferProps
