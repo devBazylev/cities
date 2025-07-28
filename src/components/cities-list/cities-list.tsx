@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import City from '../city/city';
 import { CityName } from '../../types';
 import { useDispatch } from 'react-redux';
@@ -10,14 +11,14 @@ function CitiesList (): JSX.Element {
   const dispatch = useDispatch();
   const activeCity = useAppSelector(getCity);
 
-  const handleClick = (name: CityName) => {
+  const handleCityClick = useCallback((name: CityName) => {
     dispatch(setCity(name));
-  };
+  }, [dispatch]);
 
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city) => (
-        <City key={city} name={city} isActive={city === activeCity.name} onClick={handleClick} />
+        <City key={city} name={city} isActive={city === activeCity.name} onClick={handleCityClick} />
       ))}
     </ul>
   );
