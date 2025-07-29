@@ -145,15 +145,15 @@ export const postFavorite = createAsyncThunk<OfferProps, { id: number; status: 1
 function convertToFullOfferProps(data: OfferProps): FullOfferProps {
   return {
     ...data,
-    title: 'Заголовок',
-    isFavorite: false,
+    title: data.description,
+    isFavorite: data.isFavorite,
     bedrooms: 1,
     maxAdults: 2,
     goods: [],
-    images: [],
+    images: [data.previewImage],
     host: {
       name: 'Имя хоста',
-      avatarUrl: '',
+      avatarUrl: '/img/avatar.svg',
       isPro: false,
     },
   };
