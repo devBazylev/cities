@@ -153,7 +153,7 @@ function convertToFullOfferProps(data: OfferProps): FullOfferProps {
     images: [data.previewImage],
     host: {
       name: 'Имя хоста',
-      avatarUrl: '/img/avatar.svg',
+      avatarUrl: 'img/avatar.svg',
       isPro: false,
     },
   };
