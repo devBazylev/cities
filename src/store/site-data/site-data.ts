@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { SiteData } from '../../types';
 import { StoreSlice } from '../../const';
-import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment, fetchFavoriteOffers, postFavorite } from '../api-action';
+import { fetchOffers, fetchOffer, fetchNearbyOffers, fetchComments, postComment, fetchFavoriteOffers, postFavorite } from '../action';
 
 const initialState: SiteData = {
   offers: [],

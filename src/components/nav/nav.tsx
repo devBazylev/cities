@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { Span } from './style';
 import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
 import { getFavoriteOffers } from '../../store/site-data/selectors';
-import { logoutUser } from '../../store/api-action';
+import { logoutUser } from '../../store/action';
 
 function Nav(): JSX.Element {
   const dispatch = useAppDispatch();

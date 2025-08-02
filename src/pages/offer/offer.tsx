@@ -4,7 +4,7 @@ import CardListOffer from '../../components/card-list-offer/card-list-offer';
 import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { fetchFavoriteOffers } from '../../store/api-action';
+import { fetchFavoriteOffers } from '../../store/action';
 
 function Property(): JSX.Element {
   const dispatch = useAppDispatch();

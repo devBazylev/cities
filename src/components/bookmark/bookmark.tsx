@@ -1,7 +1,7 @@
 import { OfferProps } from '../../types';
 
 import { useAppDispatch } from '../../hooks';
-import { postFavorite } from '../../store/api-action';
+import { postFavorite } from '../../store/action';
 
 type BookmarkProps = {
     id: OfferProps['id'];

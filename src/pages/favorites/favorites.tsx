@@ -9,7 +9,7 @@ import Card from '../../components/card/card';
 import Spinner from '../../components/spinner/spinner';
 import { useEffect } from 'react';
 import { getFavoriteOffers, getIsFavoriteOffersLoading } from '../../store/site-data/selectors';
-import { fetchFavoriteOffers } from '../../store/api-action';
+import { fetchFavoriteOffers } from '../../store/action';
 import { OfferProps } from '../../types';
 
 function Favorites(): JSX.Element {

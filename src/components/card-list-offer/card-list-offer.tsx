@@ -9,7 +9,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { CommentAuth } from '../../types';
-import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../../store/api-action';
+import { fetchOffer, fetchNearbyOffers, fetchComments, postComment } from '../../store/action';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getIsOffersLoading, getOffer, getNearbyOffers, getComments } from '../../store/site-data/selectors';
 

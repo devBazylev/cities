@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import CitiesList from '../../components/cities-list/cities-list';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { fetchFavoriteOffers } from '../../store/api-action';
+import { fetchFavoriteOffers } from '../../store/action';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
