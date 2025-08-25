@@ -11,11 +11,6 @@ interface ThunkExtraArg {
   history: History;
 }
 
-type Extra = {
-  api: AxiosInstance;
-  history: History;
-}
-
 export const Action = {
   LOGIN_USER: 'user/login',
   LOGOUT_USER: 'user/logout',
@@ -101,7 +96,7 @@ export const fetchComments = createAsyncThunk<Comment[], FullOfferProps['id'], {
     return data;
   }
 );
-export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Extra }>(
+export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: ThunkExtraArg }>(
   Action.POST_COMMENT,
   async ({ id, comment, rating }, { extra }) => {
     const { api } = extra;
@@ -111,7 +106,7 @@ export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Ext
   }
 );
 
-export const fetchFavoriteOffers = createAsyncThunk<OfferProps[], undefined, { extra: Extra }>(
+export const fetchFavoriteOffers = createAsyncThunk<OfferProps[], undefined, { extra: ThunkExtraArg }>(
   Action.FETCH_FAVORITE_OFFERS,
   async (_, { extra }) => {
     const { api } = extra;
@@ -121,7 +116,7 @@ export const fetchFavoriteOffers = createAsyncThunk<OfferProps[], undefined, { e
   }
 );
 
-export const postFavorite = createAsyncThunk<OfferProps, { id: number; status: 1 | 0 }, { extra: Extra }>(
+export const postFavorite = createAsyncThunk<OfferProps, { id: number; status: 1 | 0 }, { extra: ThunkExtraArg }>(
   Action.POST_FAVORITE,
   async ({ id, status }, { extra }) => {
     const { api, history } = extra;
@@ -134,7 +129,8 @@ export const postFavorite = createAsyncThunk<OfferProps, { id: number; status: 1
       const axiosError = error as { response?: { status: number } };
 
       if (axiosError.response?.status === 401) {
-        history.push(AppRoute.Login);
+        const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Login);
+        history.push(path);
       }
 
       return Promise.reject(error);
