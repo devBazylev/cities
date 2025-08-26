@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { BrowserRouter } from 'react-router-dom';
 
 import City from './city';
 import { cities } from '../../const';
@@ -9,11 +10,14 @@ describe('Component: City', () => {
     const onClick = vi.fn();
 
     render(
-      <City
-        name={cities[0]}
-        isActive
-        onClick={onClick}
-      />);
+      <BrowserRouter>
+        <City
+          name={cities[0]}
+          isActive
+          onClick={onClick}
+        />
+      </BrowserRouter>
+    );
 
     expect(screen.getByText(cities[0])).toBeInTheDocument();
     expect(screen.getByRole('link')).toHaveClass('tabs__item--active');
@@ -23,11 +27,14 @@ describe('Component: City', () => {
     const onClick = vi.fn();
 
     render(
-      <City
-        name={cities[0]}
-        isActive={false}
-        onClick={onClick}
-      />);
+      <BrowserRouter>
+        <City
+          name={cities[0]}
+          isActive={false}
+          onClick={onClick}
+        />
+      </BrowserRouter>
+    );
 
     await userEvent.click(screen.getByRole('link'));
 

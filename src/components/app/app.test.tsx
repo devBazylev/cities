@@ -114,7 +114,7 @@ describe('Application Routing', () => {
     expect(screen.getByText(user.email)).toBeInTheDocument();
     expect(screen.getByText('Sign out')).toBeInTheDocument();
     expect(screen.getByText(`1 places to stay in ${cities[0]}`)).toBeInTheDocument();
-    expect(screen.getByText(sortingValues[0])).toBeInTheDocument();
+    expect(screen.getByText(sortingValues[0], { selector: '.places__sorting-type' })).toBeInTheDocument();
     expect(screen.getByText('Premium')).toBeInTheDocument();
     expect(screen.getByText(offers[0].description)).toBeInTheDocument();
   });
@@ -146,7 +146,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText('Not Found 404')).toBeInTheDocument();
+    expect(screen.getByText('404 not found')).toBeInTheDocument();
   });
 
   it('should render "Property" when user navigates to "/offer/:id"', () => {
@@ -154,7 +154,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText(offers[0].description)).toBeInTheDocument();
+    expect(screen.getByText(offers[0].description, { selector: '.property__name' })).toBeInTheDocument();
     expect(screen.getByText(offers[0].type)).toBeInTheDocument();
   });
 });

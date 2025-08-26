@@ -3,3 +3,8 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/vitest-dom
 import '@testing-library/jest-dom';
+
+// Mock window.scrollTo for tests
+if (typeof window !== 'undefined') {
+  window.scrollTo = () => {};
+}
