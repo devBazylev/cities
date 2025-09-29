@@ -14,9 +14,8 @@ import HistoryRouter from '../history-route/history-route';
 // @ts-ignore
 
 function App(): JSX.Element {
-  console.log('BASE_URL:', import.meta.env.BASE_URL);
   return (
-    <HistoryRouter history={history} basename={import.meta.env.BASE_URL} >
+    <HistoryRouter history={history} basename="/" >
       <ScrollToTop />
       <Routes>
         <Route path="/">

@@ -55,7 +55,7 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     const { token } = data;
 
     saveToken(token);
-    const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+    const path = joinPaths('/', AppRoute.Root);
     history.push(path);
 
     return email;
@@ -74,7 +74,7 @@ export const logoutUser = createAsyncThunk<void, undefined, { extra: ThunkExtraA
     }
 
     dropToken();
-    const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Root);
+    const path = joinPaths('/', AppRoute.Root);
     history.push(path);
   }
 );
@@ -129,7 +129,7 @@ export const postFavorite = createAsyncThunk<OfferProps, { id: number; status: 1
       const axiosError = error as { response?: { status: number } };
 
       if (axiosError.response?.status === 401) {
-        const path = joinPaths(import.meta.env.BASE_URL || '', AppRoute.Login);
+        const path = joinPaths('/', AppRoute.Login);
         history.push(path);
       }
 
